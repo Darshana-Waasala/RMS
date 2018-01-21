@@ -1,0 +1,43 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span style="flex: 0.1"></span>
+    <h1 class="example-app-name">{{currentTitle}}</h1>
+    <span style="flex: 1 1 auto"></span>
+    <p>hello user the large name</p>
+    <span style="flex: 0.01 auto"></span>
+    <h3>|</h3>
+    <span style="flex: 0.01 auto"></span>
+    <a> signout</a>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav mode="push" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
+
+      <mat-nav-list (click)="sidenav.toggle()">
+
+        <mat-list-item *ngFor="let item of sidenavDetails" routerLink={{item.routerLink}} (click)="updateTopic(item.name)">
+          <a mat-line> {{item.name}} </a>
+          <mat-icon matListIcon>{{item.icon}}</mat-icon>
+          <!-- <button mat-icon-button ></button> -->
+        </mat-list-item>
+
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- <p>
+        <mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox>
+      </p>
+      <p>
+        <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
+      </p> -->
+
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

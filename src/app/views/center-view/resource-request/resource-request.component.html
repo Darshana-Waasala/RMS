@@ -1,0 +1,62 @@
+<!-- <mat-card>
+    <form class="example-form" [formGroup]='requestForm' novalidate>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName = "email"
+          [errorStateMatcher]="matcher" (keyup)="printVal()">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="!requestForm.controls.email.touched && (requestForm.controls.email.value ==='')">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="requestForm.controls.email.errors.email && !(requestForm.controls.email.value ==='')">
+              Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+      </form>
+      
+</mat-card> -->
+
+<mat-card>
+  <form [formGroup]="requestForm" novalidate>
+    <mat-grid-list cols="2" rowHeight="7:1">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [min]="minDate" [max]="requestForm.value.endDate" placeholder="start date dd/mm/yyyy"
+            formControlName='startDate'>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" [min]="startDate" [max]="requestForm.value.endDate" placeholder="end date dd/mm/yyyy"
+            formControlName='endDate'>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+        <mat-form-field>
+          <mat-select placeholder="By Resource" formControlName='resource'>
+            <mat-option *ngFor="let resource of resources" [value]="resource.value">
+              {{ resource.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <!-- <mat-form-field> -->
+        <button mat-raised-button color="warn" (click)='printValue()'>search</button>
+        <!-- </mat-form-field> -->
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </form>
+  <!-- <p>Form value: {{ searchForm.value | json }}</p> -->
+</mat-card>
