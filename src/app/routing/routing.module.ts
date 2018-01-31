@@ -20,6 +20,7 @@ import { ResourcesComponent } from '../views/center-view/resources/resources.com
 import { SearchComponent } from '../views/center-view/search/search.component';
 import { SkillsComponent } from '../views/center-view/skills/skills.component';
 import { UtilizationHistoryComponent } from '../views/center-view/utilization-history/utilization-history.component';
+import { EmployeeComponent } from '../views/center-view/employee/employee.component'
 
 const routes: Routes = [
 
@@ -44,10 +45,11 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'skills', component: SkillsComponent },
       { path: 'utilization-history', component: UtilizationHistoryComponent },
+      { path: 'employee-component', component:EmployeeComponent}
     ]
   },
 
-  { path: '', redirectTo: '/base/search', pathMatch: 'full' },
+  { path: '', redirectTo: '/base/employee-component', pathMatch: 'full' },
 
 ]
 

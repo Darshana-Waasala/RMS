@@ -1,0 +1,79 @@
+<mat-card>
+  <h3>Department</h3>
+  <button mat-raised-button color="warn" (click)="addOrEditEmp()" >create new</button>
+  <!-- (click)='openDialog()' -->
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+
+      <!-- prifile picture -->
+      <ng-container matColumnDef="picture">
+          <mat-header-cell *matHeaderCellDef disableClear="true"> Picture </mat-header-cell>
+          <mat-cell *matCellDef="let row"><img src="{{row.imagePath}}"/> </mat-cell>
+        </ng-container>
+
+      <!-- last name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  disableClear="true"> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
+      </ng-container>
+
+      <!-- email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+      </ng-container>
+
+      <!-- level Column -->
+      <ng-container matColumnDef="employeeLevel">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Employee Level </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.employeeLevel}} </mat-cell>
+      </ng-container>
+
+      <!-- experience column -->
+        <ng-container matColumnDef="experience">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Experience </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.experience}} </mat-cell>
+    </ng-container>
+
+    <!-- joined date column -->
+    <ng-container matColumnDef="joinedDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Date Joined </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.joinedDate | date}} </mat-cell>
+    </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+          <a mat-mini-fab (click)='addOrEditEmp(row)'>Edit</a>
+          <a mat-mini-fab (click)='openDialog(row,1)'>Details</a>
+          <a mat-mini-fab (click)='openDialog(row,0)'>Delete</a> 
+        </mat-cell>
+      </ng-container>
+
+  <!-- Color Column ORIGINAL COPY -->
+  <!-- <ng-container matColumnDef="color">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.color"> 
+        <a>edit</a>|<a>details</a>|<a>delete</a> 
+      </mat-cell>
+    </ng-container> -->
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+
+</mat-card>

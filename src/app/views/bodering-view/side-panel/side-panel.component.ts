@@ -50,6 +50,7 @@ export class SidePanelComponent implements OnInit {
       {name:'Department',icon:'business',routerLink:'/base/department'},
       // {name:'Designation',icon:'info',routerLink:'/base/designation'},
       {name:'Experience',icon:'class',routerLink:'/base/expertise'},
+      {name:'Employee',icon:'class',routerLink:'/base//employee-component'},
       {name:'Location',icon:'streetview',routerLink:'/base/location'},
       {name:'Project',icon:'book',routerLink:'/base/project'},
       {name:'Resources',icon:'build',routerLink:'/base/resources'},

@@ -1,3 +1,53 @@
 <p>
   utilization-history works!
 </p>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Personal data
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Age">
+    </mat-form-field>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<hr>
+<button (click)='getEmpoyees()'>test employees</button>
+
+{{employees}}
+
+<mat-spinner *ngIf='loading'></mat-spinner>
+
+<hr>
+<br>
+<label>Search by employee last name</label>
+<input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+<ul>
+  <li *ngFor="let employee of employees$ | async">
+    <label>Employee name : </label>  {{employee.firstName}}<label>contact No : </label> {{employee.contactNo}}
+  </li>
+</ul>
+
+<img src="../../../../assets/image/2.jpg" alt="HTML5 Icon" style="width:128px;height:128px;"> 

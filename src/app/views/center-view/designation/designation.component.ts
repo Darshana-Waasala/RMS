@@ -10,6 +10,7 @@ export class DesignationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

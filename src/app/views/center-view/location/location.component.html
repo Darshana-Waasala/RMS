@@ -1,3 +1,352 @@
-<p>
-  location works!
-</p>
+<mat-card>
+
+  <form class="example-form" [formGroup]='employeeForm' (ngSubmit)="onSubmit()" novalidate>
+
+
+    <mat-grid-list cols="2" rowHeight="14:2">
+
+      <!-- employee pic -->
+      <mat-grid-tile [colspan]="2" [rowspan]="3">
+            <input type="file" placeholder="add an image" >
+      </mat-grid-tile>
+
+      <!-- employee level -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width" *ngIf="employeeLevels">
+          <mat-select placeholder="Employee Level" formControlName="employeeLevel" required [errorStateMatcher]="matcher">
+            <mat-option *ngFor="let level of employeeLevels" [value]="level.value" (click)="print()">
+              {{level.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.employeeLevel)">
+            Employee Level is
+            <strong>required!</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <!-- full name -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Full Name" formControlName="fullName" [errorStateMatcher]="matcher" (keyup)="print()" required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.fullName)">
+            Full Name is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.fullName)">
+            Full Name shold be
+            <strong> at least 4 charactors </strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- first name -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher" (keyup)="print()" required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.firstName)">
+            First Name is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.firstName)">
+            First Name shold be
+            <strong> at least 4 charactors </strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- last name -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher" (keyup)="print()" required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.lastName)">
+            Last Name is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.lastName)">
+            Last Name shold be
+            <strong> at least 4 charactors </strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <!-- address -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Address" formControlName="address" [errorStateMatcher]="matcher" (keyup)="print()" required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.address)">
+            Address is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.address)">
+            Addresss hold be
+            <strong> at least 4 charactors </strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- email -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher" (keyup)="print()" required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.email)">
+            Email is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isEmailValid(employeeForm.controls.email)">
+            Please enter a
+            <strong> valid</strong> email
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- nic -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="National Identity Card No" formControlName="nic" [errorStateMatcher]="matcher" (keyup)="print()"
+            required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.nic)">
+            NIC number is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.nic)">
+            NIC number shold be
+            <strong> at least 10 charactors </strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- birthday -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="birthdayPicker" [min]="" [max]="today" placeholder="Select the Birthday" formControlName='birthday'
+            [errorStateMatcher]="matcher" required>
+          <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+          <mat-datepicker #birthdayPicker></mat-datepicker>
+
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.birthday)">
+            Birthday is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isDateOK(employeeForm.controls.birthday)">
+            Enter a valid
+            <strong> Date</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- gender -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width" *ngIf="gender">
+          <mat-select placeholder="Gender" formControlName="gender" required [errorStateMatcher]="matcher">
+            <mat-option *ngFor="let gen of gender" [value]="gen.value" (click)="print()">
+              {{gen.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.gender)">
+            Gender is
+            <strong>required!</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- skills -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width" *ngIf="listOfSkills">
+          <mat-select placeholder="Select Skill/Skills" formControlName="skills" required [errorStateMatcher]="matcher" multiple>
+            <mat-select-trigger>
+              {{employeeForm.controls.skills.value !== null ? employeeForm.controls.skills.value[0] : ''}}
+              <span *ngIf="employeeForm.controls.skills.value !== null" class="example-additional-selection">
+                <span *ngIf="employeeForm.controls.skills.value.length > 1">
+                  (+{{employeeForm.controls.skills.value.length - 1}} others)
+                </span>
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let skill of listOfSkills" [value]="skill" (click)="print()">
+              {{skill}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.skills)">
+            Skill is/ Skills are
+            <strong>required!</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- experience -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Experience in Years" formControlName="experience" [errorStateMatcher]="matcher" (keyup)="print()"
+            required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.experience)">
+            Expericen number is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.experience)">
+            NIC number shold be
+            <strong> at least 4 charactors</strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- marital status -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Select Marital Status" formControlName="maritalStatus" required [errorStateMatcher]="matcher">
+            <mat-option *ngFor="let status of maritalStatus" [value]="status.name" (click)="print()">{{status.value}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.maritalStatus)">
+            Marital status
+            <strong>required!</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- contact no -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Contact number" formControlName="contactNo" [errorStateMatcher]="matcher" (keyup)="print()"
+            required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.contactNo)">
+            Contact number is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.contactNo)">
+            contact number shold be
+            <strong> at least 10 charactors</strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- qualifications -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width" *ngIf="listOfQualifications">
+          <mat-select placeholder="Select Skill/Skills" formControlName="qualifications" required [errorStateMatcher]="matcher" multiple>
+            <mat-select-trigger>
+              {{employeeForm.controls.qualifications.value !== null ? employeeForm.controls.qualifications.value[0] : ''}}
+              <span *ngIf="employeeForm.controls.qualifications.value !== null" class="example-additional-selection">
+                <span *ngIf="employeeForm.controls.qualifications.value.length > 1">
+                  (+{{employeeForm.controls.qualifications.value.length - 1}} others)
+                </span>
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let qualification of listOfQualifications" [value]="qualification" (click)="print()">
+              {{qualification}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.qualifications)">
+            Qualification is/ Qualifications are
+            <strong>required!</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- Blood Group -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width" *ngIf="bloodGroups">
+          <mat-select placeholder="Select the blood group" formControlName="bloodGroup" [errorStateMatcher]="matcher">
+            <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup.value" (click)="print()">{{bloodGroup.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <!-- religion -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Religion/Philosophy" formControlName="religion" [errorStateMatcher]="matcher" (keyup)="print()"
+            required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.religion)">
+            Religion is
+            <strong> required</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- nationality -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nationality" formControlName="nationality" [errorStateMatcher]="matcher" (keyup)="print()" required>
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.nationality)">
+            Nationality is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isFieldLengthEnough(employeeForm.controls.nationality)">
+            Nationality shold be
+            <strong> at least 4 charactors</strong> long.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- joinedDate -->
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="joinedDate" [min]="" [max]="today" placeholder="joined date" formControlName='joinedDate'
+            [errorStateMatcher]="matcher" required>
+          <mat-datepicker-toggle matSuffix [for]="joinedDate"></mat-datepicker-toggle>
+          <mat-datepicker #joinedDate></mat-datepicker>
+
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="isFieldRequired(employeeForm.controls.joinedDate)">
+            Joined day is
+            <strong> required</strong>
+          </mat-error>
+          <mat-error *ngIf="isDateOK(employeeForm.controls.joinedDate)">
+            Enter a valid
+            <strong> Date</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+      <!-- comments -->
+      <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Comments" formControlName="comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
+            (keyup)="print()"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- for the visa details -->
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <div formGroupName='visaDetails'>
+          <section class="example-section">
+            <mat-checkbox formControlName='visaAvailablity' (click)="print()">Checked</mat-checkbox>
+          </section>
+        </div>
+      </mat-grid-tile>
+
+
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+        <mat-card-content *ngIf="!isToEdit">
+          <!-- shown when came to add an employee -->
+          <button type="submit" [disabled]="!employeeForm.valid">add employee</button>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="isToEdit">
+          <!-- shown when came to edit an employee -->
+          <button type="submit" [disabled]="!employeeForm.valid">confirm edit</button>
+        </mat-card-content>
+      </mat-grid-tile>
+
+
+    </mat-grid-list>
+
+  </form>
+
+</mat-card>

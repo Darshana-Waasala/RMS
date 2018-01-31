@@ -26,6 +26,7 @@ import { ProjectRoleComponent } from './center-view/project-role/project-role.co
 import { SkillsComponent } from './center-view/skills/skills.component';
 import { ProjectUtilizationComponent } from './center-view/project-utilization/project-utilization.component';
 import { BaseComponent } from './base/base.component';
+import { EmployeeComponent,AddEmployee } from './center-view/employee/employee.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { BaseComponent } from './base/base.component';
     ProjectRoleComponent,
     SkillsComponent,
     ProjectUtilizationComponent,
+    EmployeeComponent,AddEmployee
   ],
   exports: [
     BaseComponent,
@@ -79,9 +81,11 @@ import { BaseComponent } from './base/base.component';
     ProjectRoleComponent,
     SkillsComponent,
     ProjectUtilizationComponent,
+    EmployeeComponent,AddEmployee
   ],
   entryComponents:[
     EditDialog,
+    AddEmployee
   ]
 })
 export class ViewsModule { }

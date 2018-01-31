@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -47,6 +46,8 @@ import { MatModule } from "./mat.module";
 import { RoutingModule } from "./routing/routing.module";
 import { ServicesModule } from "./services/services.module";
 import { ViewsModule } from "./views/views.module";
+
+import { GeneralService } from './services/general.service';
 
 import { AppComponent, DialogOverviewExampleDialog } from './app.component';
 
@@ -129,15 +130,14 @@ import { AppComponent, DialogOverviewExampleDialog } from './app.component';
 @NgModule({
 
   imports: [
+    ServicesModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpModule,
     CommonModule,
     MatModule, // for angular material
     RoutingModule,
-    ServicesModule,
     ViewsModule,
   ],
   declarations: [

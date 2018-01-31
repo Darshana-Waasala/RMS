@@ -37,14 +37,18 @@ export class ResourceRequestComponent implements OnInit {
       basedLocation:[''],
       expertise:[''],
       skills:[''],
-      email:new FormControl('', [Validators.required,Validators.email,])
+      email:new FormControl('', [Validators.email,])
     });
   }
 
   matcher = new MyErrorStateMatcher();
 
-  printVal(){
+  printValue(){
     console.log(this.requestForm);
+  }
+
+  onSubmit(){
+    console.log('trying to submit')
   }
 
 }
