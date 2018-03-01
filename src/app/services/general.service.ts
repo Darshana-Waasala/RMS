@@ -60,8 +60,8 @@ export class GeneralService<T> {
   }
 
   /** POST add a new item to the server */
-  public add(url:string,employee:Employee):Observable<T>{
-    return this.http.post<T>(url,employee,httpOptions)
+  public add(url:string,item:any):Observable<T>{ // the item will be of any format array or object 
+    return this.http.post<T>(url,item,httpOptions)
     .pipe(
       tap((employeeRsp:T)=>this.log(`added employee id = ${employeeRsp}`)),
       catchError(this.handleError<any>('add employee'))

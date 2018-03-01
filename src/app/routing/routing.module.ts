@@ -21,6 +21,8 @@ import { SearchComponent } from '../views/center-view/search/search.component';
 import { SkillsComponent } from '../views/center-view/skills/skills.component';
 import { UtilizationHistoryComponent } from '../views/center-view/utilization-history/utilization-history.component';
 import { EmployeeComponent } from '../views/center-view/employee/employee.component'
+import { ApplyLeaveComponent } from '../views/center-view/apply-leave/apply-leave.component';
+import { PendingLeavesComponent } from '../views/center-view/pending-leaves/pending-leaves.component';
 
 const routes: Routes = [
 
@@ -45,7 +47,9 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent },
       { path: 'skills', component: SkillsComponent },
       { path: 'utilization-history', component: UtilizationHistoryComponent },
-      { path: 'employee-component', component:EmployeeComponent}
+      { path: 'employee-component', component:EmployeeComponent},
+      { path: 'apply-leave', component: ApplyLeaveComponent},
+      { path: 'pending-leave', component:PendingLeavesComponent}
     ]
   },
 

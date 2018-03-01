@@ -27,6 +27,8 @@ import { SkillsComponent } from './center-view/skills/skills.component';
 import { ProjectUtilizationComponent } from './center-view/project-utilization/project-utilization.component';
 import { BaseComponent } from './base/base.component';
 import { EmployeeComponent,AddEmployee } from './center-view/employee/employee.component';
+import { ApplyLeaveComponent } from './center-view/apply-leave/apply-leave.component';
+import { PendingLeavesComponent } from './center-view/pending-leaves/pending-leaves.component';
 
 
 @NgModule({
@@ -58,7 +60,7 @@ import { EmployeeComponent,AddEmployee } from './center-view/employee/employee.c
     ProjectRoleComponent,
     SkillsComponent,
     ProjectUtilizationComponent,
-    EmployeeComponent,AddEmployee
+    EmployeeComponent,AddEmployee, ApplyLeaveComponent, PendingLeavesComponent
   ],
   exports: [
     BaseComponent,

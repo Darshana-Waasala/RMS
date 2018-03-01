@@ -1,6 +1,8 @@
 <mat-card>
-  <h3>Department</h3>
-  <button class="right" mat-raised-button color="warn" >create new</button>
+  <h3>Projects</h3>
+  <button class="right1" mat-raised-button color="warn" (click)="getCurrentProjects()">Current projects</button>
+  <button class="right2" mat-raised-button color="warn" (click)="getPastProjects()">Past projects</button>
+  <button class="right3" mat-raised-button color="warn" (click)="getPendingProjects()">Pending projects</button>
 
   <div class="example-header">
     <mat-form-field>
@@ -51,8 +53,12 @@
 
       <!-- action Column -->
       <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.action}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
+        <mat-cell *matCellDef="let row"> 
+          <a mat-mini-fab (click)='addOrEditProj(row)'>Edit</a>
+          <a mat-mini-fab (click)='openDialog(row,1)'>Details</a>
+          <a mat-mini-fab (click)='openDialog(row,0)'>Delete</a> 
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

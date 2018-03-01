@@ -19,8 +19,17 @@
     max-height: 500px;
   }
 
-  .right {
+.right1 {
     position: relative;
-    right: 25%;
-    
+    left: 45%;
+}
+
+.right2 {
+    position: relative;
+    left: 48%;
+}
+
+.right3 {
+    position: relative;
+    left: 51%;
 }

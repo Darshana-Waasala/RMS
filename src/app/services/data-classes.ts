@@ -27,7 +27,7 @@ export class SideNavDetails {
 export class Employee {
     constructor(
         public id: number,
-        public employeeLevel: number, // 1-dev,SE,QA, 2-PM, 3-RM, 4-Admin
+        public employeeLevel: number, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
         public fullName: string,
         public firstName: string,
         public lastName: string,
@@ -47,11 +47,22 @@ export class Employee {
         public nationality: string,
         public comments: string,
         public joinedDate:string,
+        public leavesTaken:string, // this is of the format "3-days,1-half_days"
+        public currentProject:number, // the project ID
         public pastProjects?: Array<string>,
         public trainingProgramsParticipated?: Array<string>,
         public imagePath?:string
-
     ) { }
+}
+
+export class EmployeeLevelDetails{
+    constructor(
+        public id:number, 
+        public employeeLevel:number,// 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
+        public levelName:string, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
+        public leaveLimit:number,
+        public monthlySalary:number
+    ){}
 }
 
 export class Visa{
@@ -93,6 +104,34 @@ export class Project{
         public technologiesUsed:Array<string>,
         public developmentMethodalogy:string, // waterfall,ajile,scrum,prototype,spiral,extreeme programming
         public projectSituation:number, // 0-pendingProject, 1-onGoingProject, 2-pastProject
+    ){}
+}
+
+export class LeaveDetails{
+    constructor(
+        public id:number, 
+        public leaveNumber:number, // 1-full_day 2-first_half 3-second_half
+        public name:string, // 1-full_day 2-first_half 3-second_half
+    ){}
+}
+
+export class Leaves{
+    constructor(
+        public id:number,
+        public employeeId:number,
+        // public employeeName:string,
+        // public department:string,
+        // public designation:string,
+        // public email:string,
+        public reason: string,
+        public contactDuringLeave:string,
+        public leaveType:number, // 1 for full_day 2 for first_half 3 for second_half
+        public startDate:Date,
+        public endDate:Date,
+        public leaveDuration:string, // k-days and half
+        public approvedByPM:Boolean,
+        public approvedByAdmin:Boolean,
+        public finalMessageSeen:Boolean,
     ){}
 }
 

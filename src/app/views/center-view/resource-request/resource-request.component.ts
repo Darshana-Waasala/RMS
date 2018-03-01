@@ -16,6 +16,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./resource-request.component.css']
 })
 export class ResourceRequestComponent implements OnInit {
+  today = new Date();
   requestForm: FormGroup;
 
   constructor(private formBuilder:FormBuilder) { 

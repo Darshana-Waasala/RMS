@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource, 
+  MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { GeneralService } from '../../../services/general.service';
 import { JsonService } from '../../../services/json.service';
@@ -14,7 +15,7 @@ import { Project } from '../../../services/data-classes';
 export class ProjectComponent implements OnInit {
 
   /** variables for the tables /////////////////////////////////////////////// */
-  displayedColumns = ['projectName', 'projectManager', 'totalExpences', 'deadLine','customer','projectCatogary','action'];
+  displayedColumns = ['projectName', 'projectManager', 'totalExpences', 'deadLine', 'customer', 'projectCatogary', 'action'];
   dataSource: MatTableDataSource<Project>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,20 +26,22 @@ export class ProjectComponent implements OnInit {
   currentProjects: Array<Project>;
   pastProjects: Array<Project>;
   pendingProjects: Array<Project>;
+  title: string;
 
   constructor(
     private projectService: GeneralService<Project>,
-    private jsonService: JsonService
+    private jsonService: JsonService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.getProjectURL();
   }
 
-    /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
+  /**
+ * Set the paginator and sort after the view init since this component will
+ * be able to query its view for the initialized paginator and sort.
+ */
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
@@ -88,6 +91,65 @@ export class ProjectComponent implements OnInit {
         this.pendingProjects = projList;
       }
     );
+  }
+
+  public getCurrentProjects() {
+    // Assign the data to the data source for the table to render
+    /**initially the tables are filled with current projects */
+    this.dataSource = new MatTableDataSource(this.currentProjects);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  public getPastProjects() {
+    // Assign the data to the data source for the table to render
+    /**initially the tables are filled with current projects */
+    this.dataSource = new MatTableDataSource(this.pastProjects);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  public getPendingProjects() {
+    // Assign the data to the data source for the table to render
+    /**initially the tables are filled with current projects */
+    this.dataSource = new MatTableDataSource(this.pendingProjects);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  public addOrEditProj(project:Project){
+
+  }
+
+  public openDialog(){
+
+  }
+
+}
+
+@Component({
+  selector: 'project-overview',
+  template:`
+    <h1 mat-dialog-title>Hi {{data.name}}</h1>
+    <div mat-dialog-content>
+      <p>What's your favorite animal?</p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.animal">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+    </div>
+  `,
+})
+export class ProjectEditOrView {
+
+  constructor(
+    public dialogRef: MatDialogRef<ProjectEditOrView>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

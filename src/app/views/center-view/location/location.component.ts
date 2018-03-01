@@ -8,7 +8,7 @@ import { JsonService } from '../../../services/json.service';
 import { GeneralService } from '../../../services/general.service'
 import { MiddleLayerService } from '../../../services/middle-layer.service';
 
-import { Project, TrainingProgram } from '../../../services/data-classes';
+import { Project, TrainingProgram, Employee } from '../../../services/data-classes';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -71,7 +71,7 @@ export class LocationComponent implements OnInit {
     private pastProjectService: GeneralService<Project>,
     private trainingProgramService: GeneralService<TrainingProgram>,
     private location: Location,
-    private mdLayerService: MiddleLayerService
+    private mdLayerService: MiddleLayerService<Employee>
   ) {
     this.createFrom();
     console.log('constructor first');
@@ -122,9 +122,9 @@ export class LocationComponent implements OnInit {
   }
 
   chackFordata() {
-    if (this.mdLayerService.getEmployee() !== null && this.mdLayerService.getEmployee() !== undefined) {
-      var tempEmployee = this.mdLayerService.getEmployee(); // get data from service
-      this.mdLayerService.resetEmployee(); // remove the temp data
+    if (this.mdLayerService.getItem() !== null && this.mdLayerService.getItem() !== undefined) {
+      var tempEmployee = this.mdLayerService.getItem(); // get data from service
+      this.mdLayerService.resetItem(); // remove the temp data
       this.isToEdit = true; // setting the flag that we have come to edit the form
       this.employeeForm.setValue({
         employeeLevel: tempEmployee.employeeLevel,

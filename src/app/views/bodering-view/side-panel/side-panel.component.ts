@@ -55,7 +55,9 @@ export class SidePanelComponent implements OnInit {
       {name:'Project',icon:'book',routerLink:'/base/project'},
       {name:'Resources',icon:'build',routerLink:'/base/resources'},
       {name:'Project Role',icon:'accessibility',routerLink:'/base/project-role'},
-      {name:'Skills',icon:'copyright',routerLink:'/base/skills'}
+      {name:'Skills',icon:'copyright',routerLink:'/base/skills'},
+      {name:'Pending Leaves', icon:'copyright',routerLink:'/base/pending-leave'},
+      {name:'Apply Leave', icon:'copyright', routerLink:'/base/apply-leave'},
     ]
   }
 

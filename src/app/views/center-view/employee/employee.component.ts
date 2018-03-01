@@ -47,7 +47,7 @@ export class EmployeeComponent implements OnInit {
     private genService: GeneralService<Employee>,
     private skillService: GeneralService<Array<string>>,
     private jsonService: JsonService,
-    private mdLayerService: MiddleLayerService,
+    private mdLayerService: MiddleLayerService<Employee>,
     private router: Router
   ) {
     this.jsonService.getURL().subscribe(
@@ -61,7 +61,7 @@ export class EmployeeComponent implements OnInit {
     // this method will navigate to the required page
     if (employee !== null) {
       console.log('going to edit employee');
-      this.mdLayerService.setEmployee(employee);
+      this.mdLayerService.setItem(employee);
       this.router.navigate(['/base/location']);
     } else {
       console.log('going to add a new employee');

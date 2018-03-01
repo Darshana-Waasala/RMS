@@ -1,62 +1,88 @@
-<!-- <mat-card>
-    <form class="example-form" [formGroup]='requestForm' novalidate>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" formControlName = "email"
-          [errorStateMatcher]="matcher" (keyup)="printVal()">
-          <mat-hint>Errors appear instantly!</mat-hint>
-          <mat-error *ngIf="!requestForm.controls.email.touched && (requestForm.controls.email.value ==='')">
-            Email is <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="requestForm.controls.email.errors.email && !(requestForm.controls.email.value ==='')">
-              Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
-
-      </form>
-      
-</mat-card> -->
-
 <mat-card>
-  <form [formGroup]="requestForm" novalidate>
-    <mat-grid-list cols="2" rowHeight="7:1">
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" [min]="minDate" [max]="requestForm.value.endDate" placeholder="start date dd/mm/yyyy"
-            formControlName='startDate'>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker2" [min]="startDate" [max]="requestForm.value.endDate" placeholder="end date dd/mm/yyyy"
-            formControlName='endDate'>
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+  <form class="example-form" [formGroup]='requestForm' (ngSubmit)="onSubmit()" novalidate>
 
-      </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <!-- <mat-grid-list cols="2" rowHeight="14:2"> -->
+    <div class="columns">
 
-        <!-- <mat-form-field>
-          <mat-select placeholder="By Resource" formControlName='resource'>
-            <mat-option *ngFor="let resource of resources" [value]="resource.value">
-              {{ resource.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field> -->
+      <!-- startday -->
+      <!-- <mat-grid-tile [colspan]="1" [rowspan]="1"> -->
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="startDayPicker" [min]="" [max]="today" placeholder="Select the Birthday" formControlName='birthday'
+          [errorStateMatcher]="matcher" required>
+        <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDayPicker></mat-datepicker>
 
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <!-- <mat-form-field> -->
-        <button mat-raised-button color="warn" (click)='printValue()'>search</button>
-        <!-- </mat-form-field> -->
-      </mat-grid-tile>
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="isFieldRequired(employeeForm.controls.birthday)">
+          Birthday is
+          <strong> required</strong>
+        </mat-error>
+        <mat-error *ngIf="isDateOK(employeeForm.controls.birthday)">
+          Enter a valid
+          <strong> Date</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- </mat-grid-tile> -->
 
-    </mat-grid-list>
+      <!-- endday -->
+      <!-- <mat-grid-tile [colspan]="1" [rowspan]="1"> -->
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="birthdayPicker" [min]="" [max]="today" placeholder="Select the Birthday" formControlName='birthday'
+          [errorStateMatcher]="matcher" required>
+        <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdayPicker></mat-datepicker>
+
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="isFieldRequired(employeeForm.controls.birthday)">
+          Birthday is
+          <strong> required</strong>
+        </mat-error>
+        <mat-error *ngIf="isDateOK(employeeForm.controls.birthday)">
+          Enter a valid
+          <strong> Date</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- </mat-grid-tile> -->
+
+
+      <!-- comments -->
+      <!-- <mat-grid-tile [colspan]="2" [rowspan]="2"> -->
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Comments" formControlName="comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
+          (keyup)="print()"></textarea>
+      </mat-form-field>
+      <!-- </mat-grid-tile> -->
+
+      <!-- for the visa details -->
+      <!-- <mat-grid-tile [colspan]="2" [rowspan]="1"> -->
+      <div formGroupName='visaDetails'>
+        <section class="example-section">
+          <mat-checkbox formControlName='visaAvailablity' (click)="print()">Checked</mat-checkbox>
+        </section>
+      </div>
+      <!-- </mat-grid-tile> -->
+
+
+
+      <!-- <mat-grid-tile [colspan]="2" [rowspan]="1"> -->
+
+      <mat-card-content *ngIf="!isToEdit">
+        <!-- shown when came to add an employee -->
+        <button type="submit" [disabled]="!employeeForm.valid">add employee</button>
+      </mat-card-content>
+
+      <mat-card-content *ngIf="isToEdit">
+        <!-- shown when came to edit an employee -->
+        <button type="submit" [disabled]="!employeeForm.valid">confirm edit</button>
+      </mat-card-content>
+      <!-- </mat-grid-tile> -->
+
+
+    </div>
+    <!-- </mat-grid-list> -->
 
   </form>
-  <!-- <p>Form value: {{ searchForm.value | json }}</p> -->
+
 </mat-card>
