@@ -57,4 +57,21 @@
 	float: right !important;
 }
 
+.keep-space{
+	/* This fills the remaining space, by using flexbox. 
+		Every toolbar row uses a flexbox row layout. */
+	flex: 1 1 auto;
+}
+
+.Aligner {
+    display: flex;
+    align-items: center;
+	justify-content: center;
+  }
+
+  .example-header-image {
+	background-image: url('../../../../assets/image/11.png');
+	background-size: cover;
+  }
+
 

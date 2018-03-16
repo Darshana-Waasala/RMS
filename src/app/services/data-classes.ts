@@ -26,8 +26,7 @@ export class SideNavDetails {
 
 export class Employee {
     constructor(
-        public id: number,
-        public employeeLevel: number, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
+        public employeeLevelId: number, // 0-admin, 1-RM, 2-PM, 3-SSE, 4-SE, 5-QA, 6-BA, 7-Intern
         public fullName: string,
         public firstName: string,
         public lastName: string,
@@ -46,98 +45,119 @@ export class Employee {
         public religion: string,
         public nationality: string,
         public comments: string,
-        public joinedDate:string,
-        public leavesTaken:string, // this is of the format "3-days,1-half_days"
-        public currentProject:number, // the project ID
-        public pastProjects?: Array<string>,
-        public trainingProgramsParticipated?: Array<string>,
-        public imagePath?:string
+        public joinedDate: string,
+        public leavesTaken: string, // this is of the format "3-days,1-half_days"
+        public currentProject: number, // the project ID
+        public id?: number,
+        public pastProjects?: Array<number>, // holds the project id
+        public trainingProgramsParticipated?: Array<number>, // holds the training program id
+        public imagePath?: string
     ) { }
 }
 
-export class EmployeeLevelDetails{
+export class EmployeeLevelDetails {
     constructor(
-        public id:number, 
-        public employeeLevel:number,// 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
-        public levelName:string, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
-        public leaveLimit:number,
-        public monthlySalary:number
-    ){}
+        public employeeLevel: number,// 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
+        public levelName: string, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
+        public leaveLimit: number,
+        public monthlySalary: number,
+        public id?: number,
+    ) { }
 }
 
-export class Visa{
+export class Visa {
     constructor(
-        public visaAvailablity:boolean,
-        public attribute_1:string,
-        public attribute_2:string,
-    ){}
+        public visaAvailablity: boolean,
+        public attribute_1: string,
+        public attribute_2: string,
+    ) { }
 }
 
-export class TrainingProgram{
+export class TrainingProgram {
     constructor(
-        public id:number,
-        public startDate:Date,
-        public endDate:Date,
-        public conductor:string,
-        public purpose:string,
-        public participants:Array<number>, //array of employee ids
-        public budget:string,
-        public completion:boolean,
-        public comments?:string,
-    ){}
+        public startDate: Date,
+        public endDate: Date,
+        public conductor: string,
+        public purpose: string,
+        public participants: Array<number>, //array of employee ids
+        public budget: string,
+        public completion: boolean,
+        public comments?: string,
+        public id?: number,
+    ) { }
 }
 
-export class Project{
+export class Project {
     constructor(
-        public id:number,
-        public projectName:string,
-        public projectManager:number, // employeeId
-        public budjet:string,      // total expected  expences
-        public totalExpences:string, // expences upto now
-        public startDate:Date,
-        public deadLine:Date,
-        public projectTeam:Array<number>, // array of employeeId
-        public expectedIncome:string,
-        public comments:string,
-        public customer:string,
-        public projectCatogary:string, // critical, urgent, deadline concerned, etc
-        public technologiesUsed:Array<string>,
-        public developmentMethodalogy:string, // waterfall,ajile,scrum,prototype,spiral,extreeme programming
-        public projectSituation:number, // 0-pendingProject, 1-onGoingProject, 2-pastProject
-    ){}
+        public projectName: string,
+        public projectManagerId: number, // employeeId
+        public resourceManagerId:number, // employeeId
+        public budjet: string,      // total expected  expences
+        public totalExpences: string, // expences upto now
+        public startDate: Date,
+        public deadLine: Date,
+        public projectTeam: Array<number>, // array of employeeId
+        public expectedIncome: string,
+        public comments: string,
+        public customer: string,
+        public projectCatogary: string, // critical, urgent, deadline concerned, etc
+        public technologiesUsed: Array<string>,
+        public developmentMethodalogy: string, // waterfall,ajile,scrum,prototype,spiral,extreeme programming
+        public projectSituation: number, // 0-pendingProject, 1-onGoingProject, 2-pastProject
+        public id?: number,
+    ) { }
 }
 
-export class LeaveDetails{
+export class LeaveDetails {
     constructor(
-        public id:number, 
-        public leaveNumber:number, // 1-full_day 2-first_half 3-second_half
-        public name:string, // 1-full_day 2-first_half 3-second_half
-    ){}
+        public id: number,
+        public leaveNumber: number, // 1-full_day 2-first_half 3-second_half
+        public name: string, // 1-full_day 2-first_half 3-second_half
+    ) { }
 }
 
-export class Leaves{
+export class Leaves {
     constructor(
-        public id:number,
-        public employeeId:number,
-        // public employeeName:string,
+        public employeeId: number,
+        public employeeLastName:string, // the last name of the employee
         // public department:string,
-        // public designation:string,
-        // public email:string,
+        public designation:number, //  this will store the number of the employee level
+        public email:string,
         public reason: string,
-        public contactDuringLeave:string,
-        public leaveType:number, // 1 for full_day 2 for first_half 3 for second_half
-        public startDate:Date,
-        public endDate:Date,
-        public leaveDuration:string, // k-days and half
-        public approvedByPM:Boolean,
-        public approvedByAdmin:Boolean,
-        public finalMessageSeen:Boolean,
-    ){}
+        public contactDuringLeave: string,
+        public leaveType: number, // 1 for full_day 2 for first_half 3 for second_half
+        public startDate: Date,
+        public endDate: Date,
+        public leaveDuration: string, // k-days and half
+        
+        public PMId: number,
+        public seenByPM: boolean,
+        public approvedByPM: Boolean,
+        public deniedByPM:boolean,
+        
+        public RMId: number,
+        public seenByRM: boolean,
+        public approvedByRM: boolean,
+        public deniedByRM:boolean,
+
+        public adminAproval:boolean,
+        
+        public finalMessageSeen: Boolean,
+        public id?: number,
+    ) { }
 }
+
 
 export class APIResults<T>{
     constructor(
-        public items:T[],
-        public total_count:number
+        public items: T[],
+        public total_count: number
+    ) { }
+}
+
+export class TermParams{
+    constructor(
+        public term:string,
+        public param:string
     ){}
 }

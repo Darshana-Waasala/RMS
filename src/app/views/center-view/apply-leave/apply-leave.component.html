@@ -13,7 +13,7 @@
       </mat-form-field>
 
       <!-- designation -->
-      <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
         <input matInput placeholder="Designation" formControlName="designation" [errorStateMatcher]="matcher" required>
 
         <mat-hint>Errors appear instantly!</mat-hint>
@@ -21,7 +21,7 @@
           Designation is
           <strong> required</strong>
         </mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- email -->
       <mat-form-field class="example-full-width">
@@ -53,8 +53,8 @@
         <mat-radio-group class="example-radio-group" formControlName="leaveType">
           <br>
           <mat-radio-button class="example-radio-button" *ngFor="let leave of leaveTypes" 
-          [value]="leave" (click)="print(leave)">
-            {{leave}}
+          [value]="leave['leaveNumber']" (click)="leaveTypeSelected(leave['leaveNumber'])">
+            {{leave["name"]}}
           </mat-radio-button>
         </mat-radio-group>
 
@@ -63,7 +63,8 @@
       <!-- startday -->
       <mat-form-field class="example-full-width">
         <input matInput [matDatepicker]="startDayPicker" [min]="today" [max]="" placeholder="Select the Start Day" formControlName='startDate'
-          [errorStateMatcher]="matcher" required>
+          [errorStateMatcher]="matcher" (dateInput)="startDateSelected(leaveRequestForm.controls.startDate.value)" 
+          (dateChange)="startDateSelected(leaveRequestForm.controls.startDate.value)" required>
         <mat-datepicker-toggle matSuffix [for]="startDayPicker"></mat-datepicker-toggle>
         <mat-datepicker #startDayPicker></mat-datepicker>
 
@@ -109,5 +110,4 @@
 
 
   </form>
-
 </mat-card>

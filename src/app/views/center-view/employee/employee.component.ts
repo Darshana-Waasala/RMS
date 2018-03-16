@@ -47,7 +47,7 @@ export class EmployeeComponent implements OnInit {
     private genService: GeneralService<Employee>,
     private skillService: GeneralService<Array<string>>,
     private jsonService: JsonService,
-    private mdLayerService: MiddleLayerService<Employee>,
+    private mdLayerService: MiddleLayerService,
     private router: Router
   ) {
     this.jsonService.getURL().subscribe(
@@ -101,7 +101,7 @@ export class EmployeeComponent implements OnInit {
           comments: employee.comments,
           contactNo: employee.contactNo,
           email: employee.email,
-          employeeLevel: employee.employeeLevel,
+          employeeLevel: employee.employeeLevelId,
           experience: employee.experience,
           firstName: employee.firstName,
           fullName: employee.fullName,
@@ -147,7 +147,7 @@ export class EmployeeComponent implements OnInit {
           comments: employee.comments,
           contactNo: employee.contactNo,
           email: employee.email,
-          employeeLevel: employee.employeeLevel,
+          employeeLevel: employee.employeeLevelId,
           experience: employee.experience,
           firstName: employee.firstName,
           fullName: employee.fullName,

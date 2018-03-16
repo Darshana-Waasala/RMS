@@ -2,7 +2,9 @@
     "employeeURL": "http://localhost:3000/employee",
     "skillURL": "http://localhost:3000/skills",
     "qualificationsURL": "http://localhost:3000/qualifications",
-    "employeeLevelURL": "http://localhost:3000/employeeLevels",
     "projectURL": "http://localhost:3000/project",
-    "trainingProgram": "http://localhost:3000/training_program"
+    "trainingProgramURL": "http://localhost:3000/training_program",
+    "allLeavesURL":"http://localhost:3000/allLeaves",
+    "leaveDetailsURL":"http://localhost:3000/leaveDetails",
+    "employeeLevelDetailsURL":"http://localhost:3000/employeeLevelDetails"
 }

@@ -71,7 +71,7 @@ export class LocationComponent implements OnInit {
     private pastProjectService: GeneralService<Project>,
     private trainingProgramService: GeneralService<TrainingProgram>,
     private location: Location,
-    private mdLayerService: MiddleLayerService<Employee>
+    private mdLayerService: MiddleLayerService
   ) {
     this.createFrom();
     console.log('constructor first');
