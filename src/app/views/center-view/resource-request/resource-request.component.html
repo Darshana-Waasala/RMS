@@ -4,22 +4,21 @@
 
 
     <!-- <mat-grid-list cols="2" rowHeight="14:2"> -->
-    <div class="columns">
 
       <!-- startday -->
       <!-- <mat-grid-tile [colspan]="1" [rowspan]="1"> -->
       <mat-form-field class="example-full-width">
-        <input matInput [matDatepicker]="startDayPicker" [min]="" [max]="today" placeholder="Select the Birthday" formControlName='birthday'
+        <input matInput [matDatepicker]="startDayPicker" [min]="" [max]="today" placeholder="Select the Start Date" formControlName='startDate'
           [errorStateMatcher]="matcher" required>
-        <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="startDayPicker"></mat-datepicker-toggle>
         <mat-datepicker #startDayPicker></mat-datepicker>
 
         <mat-hint>Errors appear instantly!</mat-hint>
-        <mat-error *ngIf="isFieldRequired(employeeForm.controls.birthday)">
-          Birthday is
+        <mat-error *ngIf="isFieldRequired(requestForm.controls.startDate)">
+          Start Date is
           <strong> required</strong>
         </mat-error>
-        <mat-error *ngIf="isDateOK(employeeForm.controls.birthday)">
+        <mat-error *ngIf="isDateOK(requestForm.controls.startDate)">
           Enter a valid
           <strong> Date</strong>
         </mat-error>
@@ -29,17 +28,17 @@
       <!-- endday -->
       <!-- <mat-grid-tile [colspan]="1" [rowspan]="1"> -->
       <mat-form-field class="example-full-width">
-        <input matInput [matDatepicker]="birthdayPicker" [min]="" [max]="today" placeholder="Select the Birthday" formControlName='birthday'
+        <input matInput [matDatepicker]="endDatePicker" [min]="" [max]="today" placeholder="Select the End Date" formControlName='endDate'
           [errorStateMatcher]="matcher" required>
-        <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
-        <mat-datepicker #birthdayPicker></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
 
         <mat-hint>Errors appear instantly!</mat-hint>
-        <mat-error *ngIf="isFieldRequired(employeeForm.controls.birthday)">
-          Birthday is
+        <mat-error *ngIf="isFieldRequired(requestForm.controls.endDate)">
+          End Date is
           <strong> required</strong>
         </mat-error>
-        <mat-error *ngIf="isDateOK(employeeForm.controls.birthday)">
+        <mat-error *ngIf="isDateOK(requestForm.controls.endDate)">
           Enter a valid
           <strong> Date</strong>
         </mat-error>
@@ -49,38 +48,38 @@
 
       <!-- comments -->
       <!-- <mat-grid-tile [colspan]="2" [rowspan]="2"> -->
-      <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Comments" formControlName="comments" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
           (keyup)="print()"></textarea>
-      </mat-form-field>
+      </mat-form-field> -->
       <!-- </mat-grid-tile> -->
 
       <!-- for the visa details -->
       <!-- <mat-grid-tile [colspan]="2" [rowspan]="1"> -->
-      <div formGroupName='visaDetails'>
+      <!-- <div formGroupName='visaDetails'>
         <section class="example-section">
           <mat-checkbox formControlName='visaAvailablity' (click)="print()">Checked</mat-checkbox>
         </section>
-      </div>
+      </div> -->
       <!-- </mat-grid-tile> -->
 
 
 
       <!-- <mat-grid-tile [colspan]="2" [rowspan]="1"> -->
 
-      <mat-card-content *ngIf="!isToEdit">
+      <!-- <mat-card-content *ngIf="!isToEdit"> -->
         <!-- shown when came to add an employee -->
-        <button type="submit" [disabled]="!employeeForm.valid">add employee</button>
-      </mat-card-content>
+        <!-- <button type="submit" [disabled]="!employeeForm.valid">add employee</button>
+      </mat-card-content> -->
 
-      <mat-card-content *ngIf="isToEdit">
+      <!-- <mat-card-content *ngIf="isToEdit"> -->
         <!-- shown when came to edit an employee -->
-        <button type="submit" [disabled]="!employeeForm.valid">confirm edit</button>
-      </mat-card-content>
+        <!-- <button type="submit" [disabled]="!employeeForm.valid">confirm edit</button>
+      </mat-card-content> -->
       <!-- </mat-grid-tile> -->
 
 
-    </div>
+    <!-- </div> -->
     <!-- </mat-grid-list> -->
 
   </form>

@@ -6,5 +6,15 @@
     "trainingProgramURL": "http://localhost:3000/training_program",
     "allLeavesURL":"http://localhost:3000/allLeaves",
     "leaveDetailsURL":"http://localhost:3000/leaveDetails",
-    "employeeLevelDetailsURL":"http://localhost:3000/employeeLevelDetails"
+    "employeeLevelDetailsURL":"http://localhost:3000/employeeLevelDetails",
+    "leavesRemainingURL":"http://localhost:3000/employeeLeavesRemaining",
+    "allPMsWithoutProjectURL":"http://",
+    "allEmployeesWithoutProjectURL":"http://",
+    "allRMsURL":"http://",
+    "projectCategoriesURL":"http://",
+    "projectTechnologiesURL":"http://",
+    "projectDevelopmentMethodalogiesURL":"http://",
+    "projectSituationsURL":"http://",
+
+    "editedOrNewProjectURL":"http://"
 }

@@ -3,6 +3,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component,OnInit} from '@angular/core';
 
 import { SideNavDetails } from "../../../services/data-classes";
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-side-panel',
@@ -15,13 +16,19 @@ export class SidePanelComponent implements OnInit {
   evilTitle;
   currentTitle:string;
   sidenavDetails:SideNavDetails[];
+  sideNavObject:Object;
 
   shouldRun = true; 
+
+  constructor(
+    private router:Router
+  ){
+  }
 
   ngOnInit() {
     this.evilTitle = 'Template <script>alert("evil never sleeps")</script>Syntax';
     this.updateSideNav();
-    this.updateTopic(this.sidenavDetails[0].name);
+    this.updateTopic();
   }
 
   updateSideNav(){
@@ -44,25 +51,68 @@ export class SidePanelComponent implements OnInit {
       {name:'Current Utilization',icon:'timer',routerLink:'/base/current-utilization'},
       {name:'Resource Request',icon:'assignment',routerLink:'/base/resource-request'},
       {name:'Project Utilization',icon:'people',routerLink:'/base/project-utilization'},
-      // {name:'Pending request',icon:'info',routerLink:'/base/pending-request'},
-      // {name:'Report',icon:'info',routerLink:'/base/report'},
+      {name:'Report',icon:'info',routerLink:'/base/report'},
       {name:'Search',icon:'search',routerLink:'/base/search'},
       {name:'Department',icon:'business',routerLink:'/base/department'},
-      // {name:'Designation',icon:'info',routerLink:'/base/designation'},
-      {name:'Experience',icon:'class',routerLink:'/base/expertise'},
-      {name:'Employee',icon:'class',routerLink:'/base//employee-component'},
-      {name:'Location',icon:'streetview',routerLink:'/base/location'},
-      {name:'Project',icon:'book',routerLink:'/base/project'},
-      {name:'Resources',icon:'build',routerLink:'/base/resources'},
-      {name:'Project Role',icon:'accessibility',routerLink:'/base/project-role'},
-      {name:'Skills',icon:'copyright',routerLink:'/base/skills'},
-      {name:'Pending Leaves', icon:'copyright',routerLink:'/base/pending-leave'},
-      {name:'Apply Leave', icon:'copyright', routerLink:'/base/apply-leave'},
-    ]
+      {name:'Designation',icon:'info',routerLink:'/base/designation'},
+      
+      
+    ];
+
+    this.sideNavObject = {
+      project:[
+        {name:'Project',icon:'book',routerLink:'/base/project'}, // overall view of projects
+        {name:'Pending Request',icon:'book',routerLink:'/base/pending-request'}, // pending resouce requests viewed by admin or resource manager
+        {name:'MyProject',icon:'book',routerLink:'/base/my-project'},// current project information (overview, messages,tasks)
+      ],
+      genInfo:[
+        {name:'Employee',icon:'folder',routerLink:'/base/employee'}, // for admin view
+        {name:'Client-Trainer',icon:'folder',routerLink:'/base/client-trainer'},
+      ],
+      trainingProgram:[
+        {name:'Training Program',icon:'note',routerLink:'/base/training-program'}, // create new training programs, current training programs, past and future
+        {name:'Comments',icon:'note',routerLink:'/base/comments'}, // this will view the comments as the trainig program is searched
+      ],
+      leave:[
+        {name:'Apply Leave', icon:'copyright', routerLink:'/base/apply-leave'},
+        {name:'Pending Leaves', icon:'copyright',routerLink:'/base/pending-leave'},
+      ],
+      messages:[
+        {name:'Messages',icon:'class',routerLink:'/base/messages'} // will show messages related to project, general messages, view by sender level
+      ],
+      profile:[
+        {name:'Profile',icon:'class',routerLink:'/base/profile'},
+        {name:'Settings',icon:'class',routerLink:'/base/settings'},
+      ]
+    }
   }
 
-  updateTopic(clickedTitle:string){
-    this.currentTitle = clickedTitle;
+  updateTopic(){
+    this.getName(this.router.url);
+    this.router.events.subscribe(event=>{
+      if( event instanceof NavigationEnd){
+        this.getName(event.url);
+      }
+    }
+    );
+  }
+
+  getName(url:string):number{
+    debugger;
+    for(var key in this.sideNavObject){
+      for(var item in this.sideNavObject[key]){
+        if(url === this.sideNavObject[key][item]['routerLink']){
+          this.currentTitle = this.sideNavObject[key][item]['name'];
+          return 0;
+        }
+      }
+    }
+  }
+
+  signout(){
+    localStorage.setItem('isLoggedin',undefined);
+    localStorage.clear();
+    this.router.navigate(['/sign-in']);
   }
 
 }

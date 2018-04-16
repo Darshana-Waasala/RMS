@@ -5,6 +5,7 @@ import { JsonService } from './json.service';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { from } from 'rxjs/observable/from'
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -31,7 +32,11 @@ export class MiddleLayerService implements OnInit{
   ) { }
 
   ngOnInit(){
-    console.log("in the service : one")
+    console.log("in the service : one");
+
+    this.jsonService.getURL().subscribe(
+      URLs=>this.URLs
+    );
   }
 
   ///////////////////// ANY ITEM /////////////////////////////////////////////////////
@@ -86,7 +91,7 @@ export class MiddleLayerService implements OnInit{
         return of(this.URLs);
       }
       else{
-        return this.jsonService.getURL().map(
+        return this.jsonService.getURL().switchMap(
           (response:Response)=>{
             this.URLs = response;
             return of(response);
@@ -266,6 +271,10 @@ export class MiddleLayerService implements OnInit{
     return of(null);
   }
 
+  /**
+   * 
+   * @param currentEmp 
+   */
   public getAllApprovedLeavesForRM(currentEmp:Employee):Observable<Leaves[]>{
     return of (null);
   }

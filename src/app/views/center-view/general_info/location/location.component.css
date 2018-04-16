@@ -1,0 +1,28 @@
+
+
+/* to align the flex content to center*/
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .align-center{
+  display: block;
+  margin: 0 auto;
+} */
+
+.example-full-width {
+  width: 100%;
+  /* padding:10px; */
+  margin: 10px;
+}
+
+/* Responsive layout - when the screen is less than 300px wide, make the input field
+take the size of the window */
+/* @media (max-width: 600px) {
+  .example-full-width example-form {
+    width: 100%;
+    margin-top: 0;
+  }
+} */

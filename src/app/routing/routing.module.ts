@@ -6,23 +6,27 @@ import { SignUpComponent } from '../views/authentication/sign-up/sign-up.compone
 import { CurrentUtilizationComponent } from '../views/center-view/current-utilization/current-utilization.component';
 import { DepartmentComponent } from '../views/center-view/department/department.component';
 import { DesignationComponent } from '../views/center-view/designation/designation.component';
-import { ExpertiseComponent } from '../views/center-view/expertise/expertise.component';
-import { LocationComponent } from '../views/center-view/location/location.component';
 import { BaseComponent } from "../views/base/base.component";
 import { SidePanelComponent } from '../views/bodering-view/side-panel/side-panel.component';
-import { PendingRequestComponent } from '../views/center-view/pending-request/pending-request.component';
-import { ProjectComponent } from '../views/center-view/project/project.component';
-import { ProjectRoleComponent } from '../views/center-view/project-role/project-role.component';
 import { ProjectUtilizationComponent } from '../views/center-view/project-utilization/project-utilization.component';
 import { ReportComponent } from '../views/center-view/report/report.component';
 import { ResourceRequestComponent } from '../views/center-view/resource-request/resource-request.component';
-import { ResourcesComponent } from '../views/center-view/resources/resources.component';
-import { SearchComponent } from '../views/center-view/search/search.component';
-import { SkillsComponent } from '../views/center-view/skills/skills.component';
 import { UtilizationHistoryComponent } from '../views/center-view/utilization-history/utilization-history.component';
-import { EmployeeComponent } from '../views/center-view/employee/employee.component'
-import { ApplyLeaveComponent } from '../views/center-view/apply-leave/apply-leave.component';
-import { PendingLeavesComponent } from '../views/center-view/pending-leaves/pending-leaves.component';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { LocationComponent } from '../views/center-view/general_info/location/location.component';
+import { PendingRequestComponent } from '../views/center-view/project/pending-request/pending-request.component';
+import { ProjectComponent } from '../views/center-view/project/project/project.component';
+import { SearchComponent } from '../views/center-view/search/search.component';
+import { EmployeeComponent } from '../views/center-view/general_info/employee/employee.component';
+import { ApplyLeaveComponent } from '../views/center-view/leave/apply-leave/apply-leave.component';
+import { PendingLeavesComponent } from '../views/center-view/leave/pending-leaves/pending-leaves.component';
+import { MyProjectComponent } from '../views/center-view/project/my-project/my-project.component';
+import { ClientTrainerComponent } from '../views/center-view/general_info/client-trainer/client-trainer.component';
+import { TrainingProgramsComponent } from '../views/center-view/training_program/training-programs/training-programs.component';
+import { CommentsComponent } from '../views/center-view/training_program/comments/comments.component';
+import { MessagesComponent } from '../views/center-view/messages/messages/messages.component';
+import { ProfileComponent } from '../views/center-view/profile/profile/profile.component';
+import { SettingsComponent } from '../views/center-view/profile/settings/settings.component';
 
 const routes: Routes = [
 
@@ -31,29 +35,41 @@ const routes: Routes = [
 
   // { path: 'base', component:BaseComponent, children:[ //
   {
-    path: 'base', component: SidePanelComponent, children: [
-      { path: 'current-utilization', component: CurrentUtilizationComponent },
-      { path: 'department', component: DepartmentComponent },
-      { path: 'designation', component: DesignationComponent },
-      { path: 'expertise', component: ExpertiseComponent },
-      { path: 'location', component: LocationComponent },
-      { path: 'pending-request', component: PendingRequestComponent },
+    path: 'base', 
+    component: SidePanelComponent,
+    canActivate:[AuthGuardService],
+    canActivateChild:[AuthGuardService], 
+    children: [
       { path: 'project', component: ProjectComponent },
-      { path: 'project-role', component: ProjectRoleComponent },
-      { path: 'project-utilization', component: ProjectUtilizationComponent },
-      { path: 'report', component: ReportComponent },
-      { path: 'resource-request', component: ResourceRequestComponent },
-      { path: 'resources', component: ResourcesComponent },
-      { path: 'search', component: SearchComponent },
-      { path: 'skills', component: SkillsComponent },
-      { path: 'utilization-history', component: UtilizationHistoryComponent },
-      { path: 'employee-component', component:EmployeeComponent},
+      { path: 'my-project', component:MyProjectComponent},
+      { path: 'pending-request', component: PendingRequestComponent },
+
+      { path: 'employee', component:EmployeeComponent},
+      { path: 'client-trainer',component:ClientTrainerComponent},
+
+      { path: 'training-program', component:TrainingProgramsComponent},
+      { path: 'comments', component:CommentsComponent},
+
       { path: 'apply-leave', component: ApplyLeaveComponent},
-      { path: 'pending-leave', component:PendingLeavesComponent}
+      { path: 'pending-leave', component:PendingLeavesComponent},
+
+      { path: 'messages', component:MessagesComponent},
+
+      { path: 'profile', component:ProfileComponent},
+      { path: 'settings', component:SettingsComponent},
+
+      { path: 'utilization-history', component: UtilizationHistoryComponent },
+      { path: 'current-utilization', component: CurrentUtilizationComponent },
+      { path: 'resource-request', component: ResourceRequestComponent },
+      { path: 'project-utilization', component: ProjectUtilizationComponent },
+      { path: 'search', component: SearchComponent },
+      { path: 'department', component: DepartmentComponent },
+      { path: 'report', component: ReportComponent },
+      { path: 'designation', component: DesignationComponent },
     ]
   },
 
-  { path: '', redirectTo: '/base/employee-component', pathMatch: 'full' },
+  { path: '', redirectTo: '/base/employee', pathMatch: 'full' },
 
 ]
 

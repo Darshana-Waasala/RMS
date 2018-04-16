@@ -52,4 +52,49 @@ export class ResourceRequestComponent implements OnInit {
     console.log('trying to submit')
   }
 
+  isFieldRequired(field: FormControl): boolean {
+
+    // checking if the form control has any errors
+    if (field.errors !== null) {
+      if (field.errors.hasOwnProperty('required') && !field.errors.hasOwnProperty('matDatepickerParse')) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
+
+  isEmailValid(field: FormControl): boolean {
+    if (field.errors !== null) {
+      if (field.errors.hasOwnProperty('email') && !field.errors.hasOwnProperty('required')) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  autoFillEndDate(field: FormControl): void {
+
+  }
+
+  isDateOK(field: FormControl): boolean {
+    if (field.errors !== null) {
+      if (field.errors.hasOwnProperty('matDatepickerParse')) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+
 }

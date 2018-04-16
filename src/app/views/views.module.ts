@@ -9,26 +9,29 @@ import { RoutingModule } from "../routing/routing.module";
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { SidePanelComponent } from './bodering-view/side-panel/side-panel.component';
-import { TopBarComponent } from './bodering-view/top-bar/top-bar.component';
 import { UtilizationHistoryComponent } from './center-view/utilization-history/utilization-history.component';
 import { CurrentUtilizationComponent } from './center-view/current-utilization/current-utilization.component';
 import { ResourceRequestComponent } from './center-view/resource-request/resource-request.component';
-import { PendingRequestComponent } from './center-view/pending-request/pending-request.component';
 import { ReportComponent } from './center-view/report/report.component';
 import { SearchComponent } from './center-view/search/search.component';
 import { DepartmentComponent, EditDialog } from './center-view/department/department.component';
 import { DesignationComponent } from './center-view/designation/designation.component';
-import { ExpertiseComponent } from './center-view/expertise/expertise.component';
-import { LocationComponent } from './center-view/location/location.component';
-import { ProjectComponent } from './center-view/project/project.component';
-import { ResourcesComponent } from './center-view/resources/resources.component';
-import { ProjectRoleComponent } from './center-view/project-role/project-role.component';
-import { SkillsComponent } from './center-view/skills/skills.component';
 import { ProjectUtilizationComponent } from './center-view/project-utilization/project-utilization.component';
 import { BaseComponent } from './base/base.component';
-import { EmployeeComponent,AddEmployee } from './center-view/employee/employee.component';
-import { ApplyLeaveComponent } from './center-view/apply-leave/apply-leave.component';
-import { PendingLeavesComponent } from './center-view/pending-leaves/pending-leaves.component';
+import { MyProjectComponent } from './center-view/project/my-project/my-project.component';
+import { ClientTrainerComponent } from './center-view/general_info/client-trainer/client-trainer.component';
+import { TrainingProgramsComponent } from './center-view/training_program/training-programs/training-programs.component';
+import { CommentsComponent } from './center-view/training_program/comments/comments.component';
+import { NewProjectComponent } from './center-view/project/new-project/new-project.component';
+import { ProfileComponent } from './center-view/profile/profile/profile.component';
+import { SettingsComponent } from './center-view/profile/settings/settings.component';
+import { MessagesComponent } from './center-view/messages/messages/messages.component';
+import { PendingRequestComponent } from './center-view/project/pending-request/pending-request.component';
+import { LocationComponent } from './center-view/general_info/location/location.component';
+import { ProjectComponent, ProjectEditOrView } from './center-view/project/project/project.component';
+import { EmployeeComponent, AddEmployee } from './center-view/general_info/employee/employee.component';
+import { ApplyLeaveComponent } from './center-view/leave/apply-leave/apply-leave.component';
+import { PendingLeavesComponent } from './center-view/leave/pending-leaves/pending-leaves.component';
 
 
 @NgModule({
@@ -44,7 +47,6 @@ import { PendingLeavesComponent } from './center-view/pending-leaves/pending-lea
     SignInComponent,
     SignUpComponent,
     SidePanelComponent,
-    TopBarComponent,
     UtilizationHistoryComponent,
     CurrentUtilizationComponent,
     ResourceRequestComponent,
@@ -53,21 +55,28 @@ import { PendingLeavesComponent } from './center-view/pending-leaves/pending-lea
     SearchComponent,
     DepartmentComponent, EditDialog,
     DesignationComponent,
-    ExpertiseComponent,
     LocationComponent,
     ProjectComponent,
-    ResourcesComponent,
-    ProjectRoleComponent,
-    SkillsComponent,
     ProjectUtilizationComponent,
-    EmployeeComponent,AddEmployee, ApplyLeaveComponent, PendingLeavesComponent
+    EmployeeComponent,
+    AddEmployee,
+    ProjectEditOrView,
+    ApplyLeaveComponent,
+    PendingLeavesComponent,
+    MyProjectComponent,
+    ClientTrainerComponent,
+    TrainingProgramsComponent,
+    CommentsComponent,
+    NewProjectComponent,
+    ProfileComponent,
+    SettingsComponent,
+    MessagesComponent
   ],
   exports: [
     BaseComponent,
     SignInComponent,
     SignUpComponent,
     SidePanelComponent,
-    TopBarComponent,
     UtilizationHistoryComponent,
     CurrentUtilizationComponent,
     ResourceRequestComponent,
@@ -76,18 +85,18 @@ import { PendingLeavesComponent } from './center-view/pending-leaves/pending-lea
     SearchComponent,
     DepartmentComponent, EditDialog,
     DesignationComponent,
-    ExpertiseComponent,
     LocationComponent,
     ProjectComponent,
-    ResourcesComponent,
-    ProjectRoleComponent,
-    SkillsComponent,
     ProjectUtilizationComponent,
-    EmployeeComponent,AddEmployee
+    EmployeeComponent,AddEmployee,
+    ProjectEditOrView
   ],
   entryComponents:[
     EditDialog,
-    AddEmployee
+    AddEmployee,
+    ProjectEditOrView,
+    NewProjectComponent,
+    LocationComponent
   ]
 })
 export class ViewsModule { }

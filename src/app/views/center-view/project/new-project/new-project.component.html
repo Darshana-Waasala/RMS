@@ -1,0 +1,209 @@
+
+
+  <form [formGroup]='projectForm' (ngSubmit)="onSubmit()" novalidate style="width: 100%">
+    
+    <mat-dialog-content>
+
+    <!-- projectName -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Project Name" formControlName="projectName" [errorStateMatcher]="matcher" (keyup)="print()"
+        required>
+      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.projectName)">
+        Project Name is
+        <strong> required</strong>
+      </mat-error>
+      <mat-error *ngIf="isFieldLengthEnough(projectForm.controls.projectName)">
+        Project Name shold be
+        <strong> at least 4 charactors </strong> long.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Project Manager -->
+    <mat-form-field class="example-full-width" *ngIf="allPMsWithoutProject">
+      <mat-select placeholder="Select PM" formControlName="projectManagerId" required [errorStateMatcher]="matcher">
+        <mat-option *ngFor="let pm of allPMsWithoutProject" [value]="pm.id" (click)="print()">
+          {{pm.firstName}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.projectManagerId)">
+        Project Manager is
+        <strong>required!</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Resource Manager -->
+    <mat-form-field class="example-full-width" *ngIf="allResourceManagers">
+      <mat-select placeholder="Select RM" formControlName="resourceManagerId" required [errorStateMatcher]="matcher">
+        <mat-option *ngFor="let rm of allResourceManagers" [value]="rm.id" (click)="print()">
+          {{rm.firstName}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.resourceManagerId)">
+        Resorce Manager is
+        <strong>required!</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- budjet -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Budjet" formControlName="budjet" [errorStateMatcher]="matcher" (keyup)="print()" required>
+      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.budjet)">
+        Bueget Estimate is
+        <strong> required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- totalExpencesUptoNow -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Totoal expences until now" formControlName="totalExpencesUptoNow" [errorStateMatcher]="matcher"
+        (keyup)="print()">
+    </mat-form-field>
+
+    <!-- startDate -->
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="startDatePicker" [min]="today" [max]="" placeholder="Select the Start Day" formControlName='startDate'
+        [errorStateMatcher]="matcher" required>
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.startDate)">
+        Start Day is
+        <strong> required</strong>
+      </mat-error>
+      <mat-error *ngIf="isDateOK(projectForm.controls.startDate)">
+        Enter a valid
+        <strong> Date</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- deadLine -->
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="endDatePicker" [min]="projectForm.controls.startDate" [max]="" placeholder="Select the End Day"
+        formControlName='deadLine' [errorStateMatcher]="matcher" required>
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.deadLine)">
+        End Day is
+        <strong> required</strong>
+      </mat-error>
+      <mat-error *ngIf="isDateOK(projectForm.controls.deadLine)">
+        Enter a valid
+        <strong> Date</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- projectTeam -->
+    <mat-form-field class="example-full-width" *ngIf="allEmployeesWithoutProject">
+      <mat-select placeholder="Select Team" formControlName="projectTeam" [errorStateMatcher]="matcher" multiple>
+        <mat-select-trigger>
+          {{projectForm.controls.projectTeam.value !== null ? projectForm.controls.projectTeam.value[0] : ''}}
+          <span *ngIf="projectForm.controls.projectTeam.value !== null" class="example-additional-selection">
+            <span *ngIf="projectForm.controls.projectTeam.value.length > 1">
+              (+{{projectForm.controls.projectTeam.value.length - 1}} others)
+            </span>
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let emp of allEmployeesWithoutProject" [value]="emp.id" (click)="print()">
+          {{emp.firstName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- expectedIncome -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Expected Income" formControlName="expectedIncome" [errorStateMatcher]="matcher" (keyup)="print()"
+        required>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.expectedIncome)">
+        Expected Income is
+        <strong> required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- comments -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Comments " formControlName="comments" [errorStateMatcher]="matcher" (keyup)="print()">
+    </mat-form-field>
+
+    <!-- customer -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Customer" formControlName="customer" [errorStateMatcher]="matcher" (keyup)="print()" required>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.customer)">
+        Customer Income is
+        <strong> required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- projectCatogary -->
+    <mat-form-field class="example-full-width" *ngIf="projCategories">
+      <mat-select placeholder="Select project categories" formControlName="projectCatogary" required [errorStateMatcher]="matcher">
+        <mat-option *ngFor="let cat of projCategories" [value]="cat" (click)="print()">
+          {{cat}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldRequired(projectForm.controls.projectCatogary)">
+        Project category is
+        <strong>required!</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- developmentMethodalogy -->
+    <mat-form-field class="example-full-width" *ngIf="projDevMethods">
+      <mat-select placeholder="select development methodology" formControlName="developmentMethodalogy" [errorStateMatcher]="matcher">
+        <mat-option *ngFor="let dev of projDevMethods" [value]="dev" (click)="print()">
+          {{dev}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- projectSituation -->
+    <mat-form-field class="example-full-width" *ngIf="projSituations">
+      <mat-select placeholder="select project situation" formControlName="projectSituation" [errorStateMatcher]="matcher">
+        <mat-option *ngFor="let sit of projSituations" [value]="sit" (click)="print()">
+          {{sit}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- technologiesUsed -->
+    <mat-form-field class="example-full-width" *ngIf="projTechnologies">
+      <mat-select placeholder="Select technology/technologies" formControlName="technologiesUsed" [errorStateMatcher]="matcher"
+        multiple>
+        <mat-select-trigger>
+          {{projectForm.controls.technologiesUsed.value !== null ? projectForm.controls.technologiesUsed.value[0] : ''}}
+          <span *ngIf="projectForm.controls.technologiesUsed.value !== null" class="example-additional-selection">
+            <span *ngIf="projectForm.controls.technologiesUsed.value.length > 1">
+              (+{{projectForm.controls.technologiesUsed.value.length - 1}} others)
+            </span>
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let tech of projTechnologies" [value]="tech" (click)="print()">
+          {{tech}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-card-content *ngIf="!data.toEdit" class="Aligner">
+      <!-- shown when came to add an employee -->
+      <button type="submit" [disabled]="!projectForm.valid">add project</button>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="data.toEdit" class="Aligner">
+      <!-- shown when came to edit an employee -->
+      <button type="submit" [disabled]="!projectForm.valid">confirm edit</button>
+    </mat-card-content>
+
+
+
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button *ngIf="!data.toEdit" type="submit" [disabled]="!projectForm.valid">Add Project</button>
+  <button mat-button *ngIf="data.toEdit" type="submit" [disabled]="!projectForm.valid">Confirm Edit</button>
+</div>
+
+
+
+</form>

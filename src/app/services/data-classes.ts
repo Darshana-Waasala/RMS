@@ -59,7 +59,7 @@ export class EmployeeLevelDetails {
     constructor(
         public employeeLevel: number,// 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
         public levelName: string, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
-        public leaveLimit: number,
+        public leaveLimit: LeavesRemaining,
         public monthlySalary: number,
         public id?: number,
     ) { }
@@ -93,7 +93,7 @@ export class Project {
         public projectManagerId: number, // employeeId
         public resourceManagerId:number, // employeeId
         public budjet: string,      // total expected  expences
-        public totalExpences: string, // expences upto now
+        public totalExpencesUptoNow: string, // expences upto now
         public startDate: Date,
         public deadLine: Date,
         public projectTeam: Array<number>, // array of employeeId
@@ -101,11 +101,39 @@ export class Project {
         public comments: string,
         public customer: string,
         public projectCatogary: string, // critical, urgent, deadline concerned, etc
-        public technologiesUsed: Array<string>,
+        public projectTechnologies: Array<string>,
         public developmentMethodalogy: string, // waterfall,ajile,scrum,prototype,spiral,extreeme programming
         public projectSituation: number, // 0-pendingProject, 1-onGoingProject, 2-pastProject
         public id?: number,
     ) { }
+}
+
+export class projSituation{
+    constructor(
+        public name:string,
+        public id?:number
+    ){}
+}
+
+export class projDevMethod{
+    constructor(
+        public name:string,
+        public id?:number
+    ){}
+}
+
+export class projCatogary{
+    constructor(
+        public name:string,
+        public id?:number
+    ){}
+}
+
+export class ProjTechnology{
+    constructor(
+        public name:string,
+        public id?:number
+    ){}
 }
 
 export class LeaveDetails {
@@ -147,6 +175,17 @@ export class Leaves {
     ) { }
 }
 
+export class LeavesRemaining{
+    constructor(
+        public fullDays:string,
+        public halfDays:string,
+        public casuals:string,
+        public medical:string,
+        public noPay:string,
+        public id?:number
+    )
+    {}
+}
 
 export class APIResults<T>{
     constructor(

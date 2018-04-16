@@ -7,6 +7,7 @@ import { GeneralService } from './general.service';
 import { MessageService } from "./message.service";
 import { JsonService } from './json.service';
 import { MiddleLayerService } from './middle-layer.service';
+import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MiddleLayerService } from './middle-layer.service';
     GeneralService,
     MessageService,
     JsonService,
-    MiddleLayerService
+    MiddleLayerService,
+    AuthGuardService
   ]
 })
 export class ServicesModule { }

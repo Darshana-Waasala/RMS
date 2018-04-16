@@ -3,28 +3,99 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+
+
+
     <span style="flex: 0.1"></span>
     <h1 class="example-app-name">{{currentTitle}}</h1>
     <span style="flex: 1 1 auto"></span>
-    <p>hello user the large name</p>
+
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="msgmenu" class="badge1" data-badge="6">
+      <i class="material-icons">message</i>
+    </button>
+    <mat-menu #msgmenu="matMenu" xPosition="before" [overlapTrigger]="false">
+      <button mat-menu-item>message one</button>
+      <button mat-menu-item>message two</button>
+    </mat-menu>
+
     <span style="flex: 0.01 auto"></span>
-    <h3>|</h3>
+
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="bellmenu" class="badge1" data-badge="6">
+        <i class="material-icons">notifications</i>
+    </button>
+    <mat-menu #bellmenu="matMenu" xPosition="before" [overlapTrigger]="false">
+      <button mat-menu-item>notification one</button>
+      <button mat-menu-item>notification two</button>
+    </mat-menu>
+
     <span style="flex: 0.01 auto"></span>
-    <a> signout</a>
+
+    <button mat-button [matMenuTriggerFor]="menu">
+      <img src="../../../../assets/image/2.png" alt="HTML5 Icon" style="width:30px;height:30px;">
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
+      <button mat-menu-item routerLink="/base/settings">
+        <i class="material-icons">perm_identity</i>settings
+      </button>
+      <button mat-menu-item (click)="signout()">
+        <i class="material-icons">touch_app</i>sign out
+      </button>
+    </mat-menu>
+
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav mode="push" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')">
 
       <mat-nav-list (click)="sidenav.toggle()" role="navigation">
+        <h3 matSubheader>Project</h3>
+        <mat-list-item *ngFor="let proj of sideNavObject.project" routerLink={{proj.routerLink}}>
+          <mat-icon matListIcon>{{proj.icon}}</mat-icon>
+          <h4 matLine>{{proj.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
 
-        <mat-list-item *ngFor="let item of sidenavDetails" routerLink={{item.routerLink}} (click)="updateTopic(item.name)">
+        <h3 matSubheader>General Info</h3>
+        <mat-list-item *ngFor="let gen of sideNavObject.genInfo" routerLink={{gen.routerLink}}>
+          <mat-icon matListIcon>{{gen.icon}}</mat-icon>
+          <h4 matLine>{{gen.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <h3 matSubheader>Training Programs</h3>
+        <mat-list-item *ngFor="let train of sideNavObject.trainingProgram" routerLink={{train.routerLink}}>
+          <mat-icon matListIcon>{{train.icon}}</mat-icon>
+          <h4 matLine>{{train.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <h3 matSubheader>Leaves</h3>
+        <mat-list-item *ngFor="let leave of sideNavObject.leave" routerLink={{leave.routerLink}}>
+          <mat-icon matListIcon>{{leave.icon}}</mat-icon>
+          <h4 matLine>{{leave.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <h3 matSubheader>Messages</h3>
+        <mat-list-item *ngFor="let msg of sideNavObject.messages" routerLink={{msg.routerLink}}>
+          <mat-icon matListIcon>{{msg.icon}}</mat-icon>
+          <h4 matLine>{{msg.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <h3 matSubheader>Profile</h3>
+        <mat-list-item *ngFor="let pro of sideNavObject.profile" routerLink={{pro.routerLink}}>
+          <mat-icon matListIcon>{{pro.icon}}</mat-icon>
+          <h4 matLine>{{pro.name}}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-nav-list>
+
+      <mat-nav-list (click)="sidenav.toggle()" role="navigation">
+        <mat-list-item *ngFor="let item of sidenavDetails" routerLink={{item.routerLink}} >
           <a mat-line> {{item.name}} </a>
           <mat-icon matListIcon>{{item.icon}}</mat-icon>
-          <!-- <button mat-icon-button ></button> -->
-
         </mat-list-item>
-
       </mat-nav-list>
 
     </mat-sidenav>
