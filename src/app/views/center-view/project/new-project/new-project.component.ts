@@ -123,11 +123,11 @@ export class NewProjectComponent implements OnInit {
           rms=>this.allResourceManagers=rms
         );
         var emp2 = new Employee(4,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-        this.genEmployeeService.postForArray(URLs['employeeURL'],emp2).subscribe(
+        this.genEmployeeService.postForArray(URLs['employeeCurrentProjNullURL'],emp2).subscribe(
           emps=>this.allEmployeesWithoutProject=emps
         );
         var emp3 = new Employee(3,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-        this.genEmployeeService.postForArray(URLs['employeeURL'],emp3).subscribe(
+        this.genEmployeeService.postForArray(URLs['employeeCurrentProjNullURL'],emp3).subscribe(
           pms=>this.allPMsWithoutProject=pms
         );
       }
