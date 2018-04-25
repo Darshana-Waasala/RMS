@@ -259,7 +259,10 @@ export class LocationComponent implements OnInit {
     this.mdLayerService.getURLs().subscribe(
       URLs=>{
         this.genEmpService.post(URLs["addEmployeeURL"],this.employeeForm.value).subscribe(
-          result => console.log(result)
+          result => {
+            console.log(result);
+            this.dialogRef.close();
+          }
         );
       }
     );

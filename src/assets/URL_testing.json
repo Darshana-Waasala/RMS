@@ -2,7 +2,6 @@
     "employeeURL": "http://localhost:3000/employee",
     "addEmployeeURL":"http://to add a new employee",
     "loginURL":"http://to post the employee",
-
     
     "skillURL": "http://localhost:3000/skills",
     "qualificationsURL": "http://localhost:3000/qualifications",
