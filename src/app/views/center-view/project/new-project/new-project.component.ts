@@ -52,6 +52,7 @@ export class NewProjectComponent implements OnInit {
 
   createFrom() {
     this.projectForm = this.formBuilder.group({
+      id:[null],
       projectName: [null, [Validators.required, Validators.minLength(4)]],
       projectManagerId: [null, [Validators.required]],
       resourceManagerId: [null, [Validators.required]],
