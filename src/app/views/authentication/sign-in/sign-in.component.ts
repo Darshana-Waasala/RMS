@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { GeneralService } from '../../../services/general.service';
+import { Employee } from '../../../services/data-classes';
+import { MiddleLayerService } from '../../../services/middle-layer.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,9 +22,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SignInComponent implements OnInit {
   emailFormControl:FormControl;
   matcher:MyErrorStateMatcher;
+  password:string;
 
   constructor(
-    private router:Router
+    private router:Router,
+    private genEmpService:GeneralService<Employee>,
+    private mdLayerService:MiddleLayerService,
   ) { }
 
   ngOnInit() {
@@ -31,15 +37,36 @@ export class SignInComponent implements OnInit {
     ]);
   
     this.matcher = new MyErrorStateMatcher();
+    this.password = '';
   }
   
   login(){
-    localStorage.setItem('isLoggedin','true');
-    this.router.navigate(['']);
+    // var emp1:Employee;
+    // emp1.password = this.password;
+    // emp1.email = this.emailFormControl.value;
+    var emp = new Employee(null,null,null,null,null,this.emailFormControl.value,null,
+    this.password,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+    this.mdLayerService.getURLs().subscribe(
+      URLs=>{
+        this.genEmpService.post(URLs["loginURL"],emp).subscribe(
+          resultEmp =>{
+            this.mdLayerService.setCurrentEmployee(resultEmp);
+            localStorage.setItem('isLoggedin','true');
+            this.router.navigate(['']);
+
+          }
+        );
+      }
+    );
   }
 
   testing(){
-    console.log(this.emailFormControl);
+    // var emp1:Employee;
+    // emp1.password = this.password;
+    // emp1.email = this.emailFormControl.value;
+    var emp = new Employee(null,null,null,null,null,this.emailFormControl.value,null,
+      this.password,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+    console.log(emp);
   }
 
 
