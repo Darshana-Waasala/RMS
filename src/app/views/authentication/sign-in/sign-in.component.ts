@@ -48,12 +48,25 @@ export class SignInComponent implements OnInit {
     this.password,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
     this.mdLayerService.getURLs().subscribe(
       URLs=>{
-        this.genEmpService.post(URLs["loginURL"],emp).subscribe(
+        this.genEmpService.postAnyReturn(URLs["loginURL"],emp).subscribe(
           resultEmp =>{
+<<<<<<< HEAD
             debugger;
             this.mdLayerService.setCurrentEmployee(resultEmp);
             localStorage.setItem('isLoggedin','true');
             this.router.navigate(['']);
+=======
+            if( resultEmp instanceof Employee){
+              this.mdLayerService.setCurrentEmployee(resultEmp);
+              localStorage.setItem('isLoggedin','true');
+              this.router.navigate(['']);
+            }else if(resultEmp === 'incorrect password'){ // if password wrong
+              console.log("password wrong");
+            }else if(resultEmp === 'invalid login attempt'){
+              console.log("no user");
+            }
+            
+>>>>>>> 33748bd7eede56c61d539fd6cf1a7b0412e9953a
 
           }
         );
