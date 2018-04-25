@@ -4,6 +4,7 @@
     "addEmployeeURL":"hhttp://to add a new employee",
     "loginURL":"http://localhost:9541/Account/LogIn",
     "employeeCurrentProjNullURL":"http:",
+    "employeeWithIdURL":"http",
 
     "skillURL": "http://localhost:3000/skills",
     "qualificationsURL": "http://localhost:3000/qualifications",

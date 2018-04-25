@@ -119,7 +119,7 @@ export class NewProjectComponent implements OnInit {
     this.middleService.getURLs().subscribe(
       URLs=>{
         var emp = new Employee(2,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-        this.genEmployeeService.postForArray(URLs['employeeURL'],emp).subscribe(
+        this.genEmployeeService.postForArray(URLs['employeeWithIdURL'],emp).subscribe(
           rms=>this.allResourceManagers=rms
         );
         var emp2 = new Employee(4,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
