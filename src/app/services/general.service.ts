@@ -74,7 +74,7 @@ export class GeneralService<T> {
         'Authorization': 'my-auth-token'
       })
     };
-    return this.http.post<T>(url, item, httpOptions)
+    return this.http.post<T>(url, item)
       .pipe(
         tap((itemRsp: T) => this.log(`posted item  = ${itemRsp}`)),
         catchError(this.handleError<any>(`post item ${item}`))
