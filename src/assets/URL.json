@@ -2,6 +2,7 @@
 
     "employeeURL": "http://localhost:9541/Employee/EmployeeDetails",
     "addEmployeeURL":"http://localhost:9541/Employee/SaveEmployee",
+    "loginURL":"http://localhost:9541/Account/LogIn",
 
     "skillURL": "http://localhost:3000/skills",
     "qualificationsURL": "http://localhost:3000/qualifications",
