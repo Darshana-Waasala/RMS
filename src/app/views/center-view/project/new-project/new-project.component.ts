@@ -121,10 +121,13 @@ export class NewProjectComponent implements OnInit {
         this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':'2'}).subscribe(
           rms=>this.allResourceManagers=rms
         );
-        this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':"3"}).subscribe(
+        var data = {'employeeLevelId':"3","currentProject":"Null"};
+        this.genEmployeeService.postForArray(URLs['employeeURL'],data).subscribe(
           emps=>this.allEmployeesWithoutProject=emps
         );
-        this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':"4"}).subscribe(
+
+        var data2 = {'employeeLevelId':"3","currentProject":"Null"}
+        this.genEmployeeService.postForArray(URLs['employeeURL'],data2).subscribe(
           pms=>this.allPMsWithoutProject=pms
         );
       }

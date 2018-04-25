@@ -26,7 +26,7 @@ export class SideNavDetails {
 
 export class Employee {
     constructor(
-        public employeeLevelId: number, // 0-admin, 1-RM, 2-PM, 3-SSE, 4-SE, 5-QA, 6-BA, 7-Intern
+        public employeeLevelId: number, // 1-admin, 2-RM, 3-PM, 4-SSE, 5-SE, 6-QA, 7-BA, 8-Intern
         public fullName: string,
         public firstName: string,
         public lastName: string,
