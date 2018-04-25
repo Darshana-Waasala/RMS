@@ -71,6 +71,7 @@ export class LocationComponent implements OnInit {
     private genService: GeneralService<string>,
     private pastProjectService: GeneralService<Project>,
     private trainingProgramService: GeneralService<TrainingProgram>,
+    private genEmpService:GeneralService<Employee>,
     private location: Location,
     private mdLayerService: MiddleLayerService,
     public dialogRef: MatDialogRef<LocationComponent>,
@@ -174,12 +175,31 @@ export class LocationComponent implements OnInit {
   }
 
   getListOfSkills(url: string) {
-    this.genService.get(url).subscribe(
-      skills => {
-        console.log(skills);
-        this.listOfSkills = skills;
-      }
-    )
+    this.listOfSkills = [
+      "java",
+      "javascript",
+      "nodejs",
+      "css",
+      "scss",
+      "angular",
+      "express",
+      "sql",
+      "mongodb",
+      "spark",
+      "python",
+      "opencv",
+      "native-script",
+      "reactjs",
+      "backbone-js",
+      "docker",
+      "unix"
+    ]
+    // this.genService.get(url).subscribe(
+    //   skills => {
+    //     console.log(skills);
+    //     this.listOfSkills = skills;
+    //   }
+    // );
   }
 
   getQualificationURL() {
@@ -188,15 +208,30 @@ export class LocationComponent implements OnInit {
         this.getListOfQualifications(response['qualificationsURL']);
         this.qualificationURL = response['qualificationsURL'];
       }
-    )
+    );
   }
 
   getListOfQualifications(url: string) {
-    this.genService.get(url).subscribe(
-      response => {
-        this.listOfQualifications = response;
-      }
-    )
+    this.listOfQualifications = [
+      "ocjp",
+      "qualification_2",
+      "qualification_3",
+      "qualification_4",
+      "qualification_5",
+      "qualification_6",
+      "qualification_7",
+      "qualification_8",
+      "qualification_9",
+      "qualification_10",
+      "qualification_11",
+      "qualification_12",
+      "qualification_13"
+    ]
+    // this.genService.get(url).subscribe(
+    //   response => {
+    //     this.listOfQualifications = response;
+    //   }
+    // );
   }
 
   getPastProjectURL() {
@@ -216,11 +251,18 @@ export class LocationComponent implements OnInit {
   }
 
   print() {
-    console.log(this.employeeForm)
+    console.log(this.employeeForm.value);
   }
 
   onSubmit() {
-    console.log('what the ......')
+    console.log(this.employeeForm)
+    this.mdLayerService.getURLs().subscribe(
+      URLs=>{
+        this.genEmpService.post(URLs["addEmployeeURL"],this.employeeForm.value).subscribe(
+          result => console.log(result)
+        );
+      }
+    );
   }
 
   onNoClick(){

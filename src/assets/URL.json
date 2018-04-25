@@ -1,5 +1,6 @@
 {
     "employeeURL": "http://localhost:3000/employee",
+    "addEmployeeURL":"http://to add a new employee",
     "skillURL": "http://localhost:3000/skills",
     "qualificationsURL": "http://localhost:3000/qualifications",
     "projectURL": "http://localhost:3000/project",
@@ -16,5 +17,6 @@
     "projectDevelopmentMethodalogiesURL":"http://",
     "projectSituationsURL":"http://",
 
-    "editedOrNewProjectURL":"http://"
+    "editedOrNewProjectURL":"http://",
+    "pendingResourceURL":"http://"
 }

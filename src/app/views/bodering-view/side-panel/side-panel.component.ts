@@ -98,7 +98,6 @@ export class SidePanelComponent implements OnInit {
   }
 
   getName(url:string):number{
-    debugger;
     for(var key in this.sideNavObject){
       for(var item in this.sideNavObject[key]){
         if(url === this.sideNavObject[key][item]['routerLink']){

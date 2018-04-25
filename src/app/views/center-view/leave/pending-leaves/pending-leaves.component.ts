@@ -16,7 +16,7 @@ export class PendingLeavesComponent implements OnInit {
   ) { }
 
   tempAdmin = new Employee(
-    0,"fullName_5","firstName_5","lastName_5","address_5","email@5","985619111v","06/13/1979","male",
+    0,"fullName_5","firstName_5","lastName_5","address_5","email@5","985619111v","123","06/13/1979","male",
     ["java","javascript","nodejs","css","scss","angular","express","sql","mongodb","spark","python","opencv","native-script","reactjs","backbone-js","docker","unix"],
     "8 years","single","0764784900",["qualification_5","qualification_7","qualification_4","qualification_10","qualification_12","qualification_13"],
     {

@@ -33,6 +33,7 @@ export class Employee {
         public address: string,
         public email: string,
         public nic: string,
+        public password:string,
         public birthday: string,
         public gender: string,
         public skills: Array<string>,
@@ -185,6 +186,24 @@ export class LeavesRemaining{
         public id?:number
     )
     {}
+}
+
+export class ResourceRequests{
+    constructor(
+        public pmId:number, // the PMid that make the request
+        public pmFirstName:string,
+        public projectId:number,
+        public projectName:string,
+        public requestedDate:string,
+        public expectingDate:string,
+        public resourceLevel:number, //employee level number
+        public allocated:boolean, //true if accepted
+        public allocatedDate?:string, // must state the allocated date
+        public comments?:string,
+        public allocatedEmployeeId?:number,
+        public rmId?:number,
+        public id?:number 
+    ){}
 }
 
 export class APIResults<T>{
