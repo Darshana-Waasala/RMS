@@ -51,7 +51,7 @@ export class SignInComponent implements OnInit {
         this.genEmpService.postAnyReturn(URLs["loginURL"],emp).subscribe(
           resultEmp =>{
 
-            if( resultEmp instanceof Employee){
+            if( resultEmp[0].hasOwnProperty("id")){
               this.mdLayerService.setCurrentEmployee(resultEmp);
               localStorage.setItem('isLoggedin','true');
               this.router.navigate(['']);
