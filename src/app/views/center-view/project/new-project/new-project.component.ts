@@ -118,16 +118,16 @@ export class NewProjectComponent implements OnInit {
     this.projSituations = ['pending','ongoing','past'];
     this.middleService.getURLs().subscribe(
       URLs=>{
-        this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':'2'}).subscribe(
+        var emp = new Employee(2,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        this.genEmployeeService.postForArray(URLs['employeeURL'],emp).subscribe(
           rms=>this.allResourceManagers=rms
         );
-        var data = {'employeeLevelId':"3","currentProject":"Null"};
-        this.genEmployeeService.postForArray(URLs['employeeURL'],data).subscribe(
+        var emp2 = new Employee(4,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        this.genEmployeeService.postForArray(URLs['employeeURL'],emp2).subscribe(
           emps=>this.allEmployeesWithoutProject=emps
         );
-
-        var data2 = {'employeeLevelId':"3","currentProject":"Null"}
-        this.genEmployeeService.postForArray(URLs['employeeURL'],data2).subscribe(
+        var emp3 = new Employee(3,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        this.genEmployeeService.postForArray(URLs['employeeURL'],emp3).subscribe(
           pms=>this.allPMsWithoutProject=pms
         );
       }
