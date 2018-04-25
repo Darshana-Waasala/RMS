@@ -79,6 +79,7 @@ export class NewProjectComponent implements OnInit {
     if(this.data.hasOwnProperty('toEdit')){
       if (this.data.toEdit === true) {
         this.projectForm.setValue({
+          id:this.data.id,
           budjet: this.data.budjet,
           comments: this.data.comments,
           customer: this.data.customer,
@@ -159,12 +160,15 @@ export class NewProjectComponent implements OnInit {
 
   onSubmit() {
     
-    // this.middleService.getURLs().subscribe(
-    //   Urls=>this.genProjectService.post(Urls['editedOrNewProjectURL'],this.projectForm.value).subscribe(
-    //     result=>console.log('this is the result',result)
-    //   )
-    // );
-    this.dialogRef.close();
+    this.middleService.getURLs().subscribe(
+      Urls=>this.genProjectService.post(Urls['editedOrNewProjectURL'],this.projectForm.value).subscribe(
+        result=>{
+          console.log('this is the result',result);
+          this.dialogRef.close();
+        }
+      )
+    );
+    
   }
   print(){
 
