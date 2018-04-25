@@ -10,7 +10,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
   canActivate(){
     console.log('can activete called=====================================');
-    if(localStorage.getItem('isLoggedin')){
+    if(localStorage.getItem('isLoggedin') === "true"){
       return true;
     }else{
       this.router.navigate(["/sign-in"]);
@@ -18,7 +18,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(){
-    if(localStorage.getItem('isLoggedin')){
+    if(localStorage.getItem('isLoggedin') === "true"){
       return true;
     }else{
       this.router.navigate(["/sign-in"]);
