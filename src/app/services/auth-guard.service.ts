@@ -10,7 +10,11 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
   canActivate(){
     console.log('can activete called=====================================');
-    return true;
+    if(localStorage.getItem('isLoggedin')){
+      return true;
+    }else{
+      this.router.navigate(["/sign-in"]);
+    }
   }
 
   canActivateChild(){

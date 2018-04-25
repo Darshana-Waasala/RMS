@@ -50,6 +50,7 @@ export class SignInComponent implements OnInit {
       URLs=>{
         this.genEmpService.postAnyReturn(URLs["loginURL"],emp).subscribe(
           resultEmp =>{
+            debugger;
             if( resultEmp instanceof Employee){
               this.mdLayerService.setCurrentEmployee(resultEmp);
               localStorage.setItem('isLoggedin','true');
