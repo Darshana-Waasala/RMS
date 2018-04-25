@@ -81,6 +81,21 @@ export class GeneralService<T> {
       )
   }
 
+    /** POST a new item to the server */
+    public postAnyReturn(url: string, item: any): Observable<any> { // the item will be of any format array or object 
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'my-auth-token'
+        })
+      };
+      return this.http.post<any>(url, item)
+        .pipe(
+          tap((itemRsp: T) => this.log(`posted item  = ${itemRsp}`)),
+          catchError(this.handleError<any>(`post item ${item}`))
+        )
+    }
+
   /** DELETE an item */
   public delete(url: string, employee: Employee | number): Observable<T> {
     const id = typeof employee === 'number' ? employee : employee.id;
