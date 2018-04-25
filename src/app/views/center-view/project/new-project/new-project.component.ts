@@ -118,13 +118,13 @@ export class NewProjectComponent implements OnInit {
     this.projSituations = ['pending','ongoing','past'];
     this.middleService.getURLs().subscribe(
       URLs=>{
-        this.genEmployeeService.getItemsWithExactAttribute(URLs['employeeURL'],'employeeLevelId',2).subscribe(
+        this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':'2'}).subscribe(
           rms=>this.allResourceManagers=rms
         );
-        this.genEmployeeService.getItemsWithExactAttribute(URLs['employeeURL'],'employeeLevelId',3).subscribe(
+        this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':"3"}).subscribe(
           emps=>this.allEmployeesWithoutProject=emps
         );
-        this.genEmployeeService.getItemsWithExactAttribute(URLs['employeeURL'],'employeeLevelId',4).subscribe(
+        this.genEmployeeService.postForArray(URLs['employeeURL'],{'employeeLevelId':"4"}).subscribe(
           pms=>this.allPMsWithoutProject=pms
         );
       }
