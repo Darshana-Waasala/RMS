@@ -67,8 +67,10 @@ export class ProjectComponent implements OnInit {
 
   public getProjects(url: string) {
 
+    var project = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,1);
+
     /**attrubute 'projectSituation' 1 for current projects */
-    this.projectService.getItemsWithExactAttribute(url, 'projectSituation', 1).subscribe(
+    this.projectService.postForArray(url,project).subscribe(
       projList => {
         this.currentProjects = projList;
 
@@ -80,15 +82,17 @@ export class ProjectComponent implements OnInit {
       }
     );
 
+    var project2 = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,2);
     /**attrubute 'projectSituation' 2 for past projects */
-    this.projectService.getItemsWithExactAttribute(url, 'projectSituation', 2).subscribe(
+    this.projectService.postForArray(url, project2).subscribe(
       projList => {
         this.pastProjects = projList;
       }
     );
 
+    var project3 = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,0);
     /**attrubute 'projectSituation' 0 for pending projects */
-    this.projectService.getItemsWithExactAttribute(url, 'projectSituation', 0).subscribe(
+    this.projectService.postForArray(url, project3).subscribe(
       projList => {
         this.pendingProjects = projList;
       }

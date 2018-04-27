@@ -82,7 +82,7 @@ export class GeneralService<T> {
   }
 
   /** POST a new item to the server */
-  public postForArray(url: string, item: any): Observable<T[]> { // the item will be of any format array or object 
+  public postForArray(url: string, item: T): Observable<T[]> { // the item will be of any format array or object 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

@@ -50,6 +50,39 @@ export class MiddleLayerService implements OnInit{
     this.tempItem = null;
   }
 
+  ///////////////////// CURRENT PROJECT /////////////////////////////////////////////////////
+  /**
+   * current employee need to be set at the login
+   * for temp-dev purposes we may set tep employyes
+   * @param employee is used to get the employee
+   */
+  public setCurrentProject(project: Project): void {
+    this.currentProject = project;
+  }
+  public getCurrentProject(): Observable<Project> {
+    if (this.currentProject !== null && this.currentProject !== undefined){
+      return of(this.currentProject);
+    }else {
+      /**
+       * this else part should be only for developing purposes
+       */
+      return this.jsonService.getURL().switchMap(
+        urls => {
+          return this.genProjectService.getById(urls["projectURL"],Math.floor(Math.random()*100)).switchMap(
+            data=> {
+              this.currentProject = data;
+              return of(data);
+            }
+          );
+        }
+      );
+    }
+  }
+  public resetCurrentProject(): void {
+    this.currentEmployee = null;
+  }
+
+
   ///////////////////// CURRENT EMPLOYEE /////////////////////////////////////////////////////
   /**
    * current employee need to be set at the login
