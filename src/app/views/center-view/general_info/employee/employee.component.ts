@@ -59,10 +59,20 @@ export class EmployeeComponent implements OnInit {
   }
 
   public addOrEditEmp(employee?: Employee) {
-    let dialogRef = this.dialog.open(LocationComponent, {
-      width: '80%',
-      data: {}
-    });
+    console.log(employee);
+    if(employee){
+      this.mdLayerService.setItem(employee);
+      let dialogRef = this.dialog.open(LocationComponent, {
+        width: '80%',
+        data: {flag:'edit'}
+      });
+    }else{
+      let dialogRef = this.dialog.open(LocationComponent, {
+        width: '80%',
+        data: {flag:'add'}
+      });
+    }
+    
     // this method will navigate to the required page
     // if (employee !== null) {
     //   console.log('going to edit employee');
@@ -204,7 +214,9 @@ export class EmployeeComponent implements OnInit {
   initializeTable(url: string) {
     this.dataSource = null;
     this.genService.get(this.employeeUrl).subscribe(
-      employees => {
+      partOfEmpList => {
+        var employees = partOfEmpList.slice(5,20);
+        console.log(employees);
         for (var i = 0; i < employees.length; i++) {
           var tempDate = new Date(employees[i].joinedDate);
           var dateString = tempDate.getFullYear() + "-" + tempDate.getMonth() + "-" + tempDate.getDate();

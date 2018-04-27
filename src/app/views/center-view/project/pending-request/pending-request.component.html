@@ -1,41 +1,34 @@
-<div class="Aligner" *ngIf="allRequests">
-  <div *ngFor "let request of allRequests">
-    <mat-card style="max-width: 800px">
+<div *ngIf="allRequests">
+  <div class="Aligner" *ngFor="let request of allRequests">
+    <mat-card style="width: 800px">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image" style="background-image: url('../../../../../assets/image/11.png')"></div>
         <mat-card-title>For the project {{request.projectName}}</mat-card-title>
         <mat-card-subtitle>Applied Date: {{request.requestedDate}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <label>required date : 
-        <p>{{request.expectingDate}}</p>
-      </label>
-        <label>requesting resource level : 
-        <p *ngIf="request.resourceLevel === 2">Resource Manager</p>
-        <p *ngIf="request.resourceLevel === 3">Project Manager</p>
-        <p *ngIf="request.resourceLevel === 4">Senior Software Engineer</p>
-        <p *ngIf="request.resourceLevel === 5">Software Engineer</p>
-        <p *ngIf="request.resourceLevel === 6">Quaity Asuerer</p>
-        <p *ngIf="request.resourceLevel === 7">Business Analysist</p>
-        <p *ngIf="request.resourceLevel === 8">Intern</p>
-      </label>
-        <label>comments : 
-        <p>{{request.comments}}</p>
-      </label>
+        <p>required date : {{request.expectingDate}}</p>
+        <p *ngIf="request.resourceLevel === 2">requesting resource level : Resource Manager</p>
+        <p *ngIf="request.resourceLevel === 3">requesting resource level : Project Manager</p>
+        <p *ngIf="request.resourceLevel === 4">requesting resource level : Senior Software Engineer</p>
+        <p *ngIf="request.resourceLevel === 5">requesting resource level : Software Engineer</p>
+        <p *ngIf="request.resourceLevel === 6">requesting resource level : Quaity Asuerer</p>
+        <p *ngIf="request.resourceLevel === 7">requesting resource level : Business Analysist</p>
+        <p *ngIf="request.resourceLevel === 8">requesting resource level : Intern</p>
+        <p>comments : {{request.comments}}</p>
 
-        <mat-form-field (click)="getAvailableResources(request.resourceLevel,request.id)">
-          <mat-select placeholder="Select the allocatable user" *ngIf="forcussedItem === request.id">
-            <mat-option *ngFor="let food of allRequests" [value]="food.value">
-              {{ food.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <mat-select (click)="getAvailableResources(request.resourceLevel,request.id)" placeholder="Select the allocatable user" >
+          <mat-option *ngFor="let available of tempAvailableEmps" [value]="available.id">
+            {{ available.fullName }},{{ available.experience }},{{ available.skills | json }}
+          </mat-option>
+        </mat-select>
 
       </mat-card-content>
       <mat-card-actions class="pull-right">
-        <button mat-button>Allocate</button>
-        <button mat-button>Deny</button>
+        <button mat-button (click)="allocate(request.id)">Allocate</button>
+        <button mat-button (click)="deny(request.id)">Deny</button>
       </mat-card-actions>
     </mat-card>
     <mat-divider></mat-divider>
+  </div>
 </div>

@@ -1,3 +1,43 @@
-<p>
-  profile works!
-</p>
+<div class="card">
+  <img src="../../../../../assets/image/11.png" alt="John" style="width:100%">
+  <h1>{{currentEmployee.lastName}}</h1>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 1">admin</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 2">Rm</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 3">PM</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 4">SSE</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 5">SE</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 6">QA</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 7">BA</p>
+  <p class="title" *ngIf="currentEmployee.employeeLevelId === 8">Intern</p>
+
+  <p>Full Name : {{currentEmployee.fullName}}</p>
+  <p>Address : {{currentEmployee.address}}</p>
+  <p>Email : {{currentEmployee.email}}</p>
+  <p>NIC : {{currentEmployee.nic}}</p>
+  <p>Oassword : {{currentEmployee.password}}</p>
+  <p>Birthday : {{currentEmployee.birthday}}</p>
+  <p>Gender : {{currentEmployee}}</p>
+  <p>Skills :
+    <span *ngFor="let skill of currentEmployee.skills">
+      {{skill}}
+    </span>
+  </p>
+  <p>Experience : {{currentEmployee.experience}}</p>
+  <p>Marital Status : {{currentEmployee.maritalStatus}}</p>
+  <p>Full Name : {{currentEmployee}}</p>
+  <div style="margin: 24px 0;">
+    <a href="#">
+      <i class="fa fa-dribbble"></i>
+    </a>
+    <a href="#">
+      <i class="fa fa-twitter"></i>
+    </a>
+    <a href="#">
+      <i class="fa fa-linkedin"></i>
+    </a>
+    <a href="#">
+      <i class="fa fa-facebook"></i>
+    </a>
+  </div>
+  <button mat-raised-button color="primary">Edit</button>
+</div>

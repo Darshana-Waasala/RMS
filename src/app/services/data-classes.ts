@@ -109,6 +109,47 @@ export class Project {
     ) { }
 }
 
+export class ProjectEvent{
+    constructor(
+        public eventName:string,
+        public eventDescription:string,
+        public projectEventType:number, // 1-CR, 2-BugFixing, 3-FunctionAddition, 4-ChangeOfPlan, 5-Meeting
+        public eventTypeName:string,    // 1-CR, 2-BugFixing, 3-FunctionAddition, 4-ChangeOfPlan, 5-Meeting
+        public eventTime:number,
+        public eventResponsiblity:number, // the employeeId made this
+        public eventDuration:string,
+        
+        // if evetnt was a CR
+        public whoMadeCR?:string, // client
+        public crDescription?:string,
+        public empDidCR?:number,
+        public empResponsibleCRName?:string,
+
+        // if event was a bug
+        public bugDescription?:string,
+        public bugCondeition?:string, //1-critical 2-mustBeDone 3-lessCritical 4-normal 5-light 6-minor
+        public bugResponsibility?:string,
+        public bugFixer?:string,
+
+        // if event was a fnction addition
+        public fucntionDescription?:string,
+        public functionWeight?:string,
+        public functionWorkers?:Array<number>, // list of ids of employees worked on funciton
+        public functionWorkerNames?:Array<string>, // list of names of employees worked on funciton
+        public functionRequestedDate?:string,
+        public functionCompletedDate?:string,
+
+        // if event was a meeting
+        public meetingDescription?:string,
+        public meetingChairman?:string,
+        public meetingParticipants?:Array<number>, // employeeIds of those who participaed
+        public meetingParticipantNames?:Array<string>,
+        public specialDecisionsInMeeting?:string,
+
+        public id?:number
+    ){}
+}
+
 export class projSituation{
     constructor(
         public name:string,

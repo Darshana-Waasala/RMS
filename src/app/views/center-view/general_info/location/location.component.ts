@@ -63,7 +63,7 @@ export class LocationComponent implements OnInit {
   listOfQualifications: Array<string>;
   listOfPastProjects: Array<Project>;
   listOfTrainingPrograms: Array<TrainingProgram>;
-  isToEdit:boolean;
+  isToEdit: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -71,14 +71,14 @@ export class LocationComponent implements OnInit {
     private genService: GeneralService<string>,
     private pastProjectService: GeneralService<Project>,
     private trainingProgramService: GeneralService<TrainingProgram>,
-    private genEmpService:GeneralService<Employee>,
+    private genEmpService: GeneralService<Employee>,
     private location: Location,
     private mdLayerService: MiddleLayerService,
     public dialogRef: MatDialogRef<LocationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.createFrom();
-    console.log('constructor first');
+    console.log('created form')
   }
 
   public goBack() {
@@ -117,20 +117,23 @@ export class LocationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isToEdit=false;
-    console.log(this.employeeForm);
-    console.log('ngOnInit after constructor');
-    this.getSkillURL();
-    this.getQualificationURL();
-    this.chackFordata();
+    this.isToEdit = false;
+    if (this.data.flag === 'edit') {
+      console.log(this.employeeForm);
+      console.log('ngOnInit after constructor');
+      this.getSkillURL();
+      this.getQualificationURL();
+      this.chackFordata();
+    } else {
+
+    }
   }
 
   chackFordata() {
     if (this.mdLayerService.getItem() !== null && this.mdLayerService.getItem() !== undefined) {
       var tempEmployee = this.mdLayerService.getItem(); // get data from service
-      this.mdLayerService.resetItem(); // remove the temp data
       this.isToEdit = true; // setting the flag that we have come to edit the form
-      this.employeeForm.setValue({
+      this.employeeForm.patchValue({
         employeeLevel: tempEmployee.employeeLevel,
         fullName: tempEmployee.fullName,
         firstName: tempEmployee.firstName,
@@ -163,6 +166,7 @@ export class LocationComponent implements OnInit {
         trainingProgramsParticipated: tempEmployee.trainingProgramsParticipated,
       })
     }
+    this.mdLayerService.resetItem(); // remove the temp data
   }
 
   getSkillURL() {
@@ -257,8 +261,8 @@ export class LocationComponent implements OnInit {
   onSubmit() {
     console.log(this.employeeForm)
     this.mdLayerService.getURLs().subscribe(
-      URLs=>{
-        this.genEmpService.post(URLs["addEmployeeURL"],this.employeeForm.value).subscribe(
+      URLs => {
+        this.genEmpService.post(URLs["addEmployeeURL"], this.employeeForm.value).subscribe(
           result => {
             console.log(result);
             this.dialogRef.close();
@@ -268,7 +272,7 @@ export class LocationComponent implements OnInit {
     );
   }
 
-  onNoClick(){
+  onNoClick() {
     this.dialogRef.close();
   }
 
