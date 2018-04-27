@@ -67,10 +67,10 @@ export class ProjectComponent implements OnInit {
 
   public getProjects(url: string) {
 
-    var project = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,1);
+    var temProject = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,1);
 
     /**attrubute 'projectSituation' 1 for current projects */
-    this.projectService.postForArray(url,project).subscribe(
+    this.projectService.postForArray(url,temProject).subscribe(
       projList => {
         this.currentProjects = projList;
 
@@ -82,21 +82,6 @@ export class ProjectComponent implements OnInit {
       }
     );
 
-    var project2 = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,2);
-    /**attrubute 'projectSituation' 2 for past projects */
-    this.projectService.postForArray(url, project2).subscribe(
-      projList => {
-        this.pastProjects = projList;
-      }
-    );
-
-    var project3 = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,0);
-    /**attrubute 'projectSituation' 0 for pending projects */
-    this.projectService.postForArray(url, project3).subscribe(
-      projList => {
-        this.pendingProjects = projList;
-      }
-    );
   }
 
   public getCurrentProjects() {
@@ -108,13 +93,33 @@ export class ProjectComponent implements OnInit {
   }
 
   public getPastProjects() {
+
+    var temProject = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,2);
+    /**attrubute 'projectSituation' 2 for past projects */
+    this.projectService.postForArray(this.projectURL, temProject).subscribe(
+      projList => {
+        this.pastProjects = projList;
+      }
+    );
+
     // Assign the data to the data source for the table to render
     /**initially the tables are filled with current projects */
     this.dataSource = new MatTableDataSource(this.pastProjects);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
   public getPendingProjects() {
+
+
+    var temProject = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,0);
+    /**attrubute 'projectSituation' 0 for pending projects */
+    this.projectService.postForArray(this.projectURL, temProject).subscribe(
+      projList => {
+        this.pendingProjects = projList;
+      }
+    );
+
     // Assign the data to the data source for the table to render
     /**initially the tables are filled with current projects */
     this.dataSource = new MatTableDataSource(this.pendingProjects);
