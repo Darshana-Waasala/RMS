@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { RoutingModule } from "../routing/routing.module";
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
@@ -40,7 +41,8 @@ import { PendingLeavesComponent } from './center-view/leave/pending-leaves/pendi
     FormsModule,
     ReactiveFormsModule,
     MatModule,
-    RoutingModule
+    RoutingModule,
+    NgbModule
   ],
   declarations: [
     BaseComponent,

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, 
-  MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {
+  MatPaginator, MatSort, MatTableDataSource,
+  MatDialog, MatDialogRef, MAT_DIALOG_DATA
+} from '@angular/material';
 
 import { GeneralService } from '../../../../services/general.service';
 import { JsonService } from '../../../../services/json.service';
@@ -32,7 +34,7 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private projectService: GeneralService<Project>,
-    private middleLayerService:MiddleLayerService,
+    private middleLayerService: MiddleLayerService,
     public dialog: MatDialog
   ) { }
 
@@ -58,7 +60,7 @@ export class ProjectComponent implements OnInit {
 
   public getProjectURL() {
     this.middleLayerService.getURLs().subscribe(
-      (response:Response) => {
+      (response: Response) => {
         this.projectURL = response['projectURL'];
         this.getProjects(response['projectURL']);
       }
@@ -67,10 +69,10 @@ export class ProjectComponent implements OnInit {
 
   public getProjects(url: string) {
 
-    var temProject = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,1);
+    var temProject = new Project(null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1);
 
     /**attrubute 'projectSituation' 1 for current projects */
-    this.projectService.postForArray(url,temProject).subscribe(
+    this.projectService.postForArray(url, temProject).subscribe(
       projList => {
         this.currentProjects = projList;
 
@@ -94,60 +96,59 @@ export class ProjectComponent implements OnInit {
 
   public getPastProjects() {
 
-    var temProject = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,2);
+    var temProject = new Project(null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2);
     /**attrubute 'projectSituation' 2 for past projects */
     this.projectService.postForArray(this.projectURL, temProject).subscribe(
       projList => {
-        this.pastProjects = projList;
+
+        // Assign the data to the data source for the table to render
+        /**initially the tables are filled with current projects */
+        this.dataSource = new MatTableDataSource(projList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }
     );
-
-    // Assign the data to the data source for the table to render
-    /**initially the tables are filled with current projects */
-    this.dataSource = new MatTableDataSource(this.pastProjects);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   public getPendingProjects() {
 
 
-    var temProject = new Project(null,null,null,null,null,null,null,null,null,null,null,null,null,null,0);
+    var temProject = new Project(null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0);
     /**attrubute 'projectSituation' 0 for pending projects */
     this.projectService.postForArray(this.projectURL, temProject).subscribe(
       projList => {
-        this.pendingProjects = projList;
+
+        // Assign the data to the data source for the table to render
+        /**initially the tables are filled with current projects */
+        this.dataSource = new MatTableDataSource(projList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }
     );
 
-    // Assign the data to the data source for the table to render
-    /**initially the tables are filled with current projects */
-    this.dataSource = new MatTableDataSource(this.pendingProjects);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
-  public editProj(project:Project){
-    let dialogRef = this.dialog.open(NewProjectComponent,{
-      width:'80%',
-      data:{
-        budjet:project.budjet,
-        comments:project.comments,
-        customer:project.customer,
-        deadLine:project.deadLine,
-        developmentMethodalogy:project.developmentMethodalogy,
-        expectedIncome:project.expectedIncome,
-        id:project.id,
-        projectCatogary:project.projectCatogary,
-        projectManagerId:project.projectManagerId,
-        projectName:project.projectName,
-        projectSituation:project.projectSituation,
-        projectTeam:project.projectTeam,
-        toEdit:true
+  public editProj(project: Project) {
+    let dialogRef = this.dialog.open(NewProjectComponent, {
+      width: '80%',
+      data: {
+        budjet: project.budjet,
+        comments: project.comments,
+        customer: project.customer,
+        deadLine: project.deadLine,
+        developmentMethodalogy: project.developmentMethodalogy,
+        expectedIncome: project.expectedIncome,
+        id: project.id,
+        projectCatogary: project.projectCatogary,
+        projectManagerId: project.projectManagerId,
+        projectName: project.projectName,
+        projectSituation: project.projectSituation,
+        projectTeam: project.projectTeam,
+        toEdit: true
       }
     });
 
-    dialogRef.afterClosed().subscribe(editedProject =>{
+    dialogRef.afterClosed().subscribe(editedProject => {
       // this.middleLayerService.getURLs().subscribe(
       //   URLs=>{
       //     this.projectService.post(URLs['editedOrNewProjectURL'],editedProject).subscribe(
@@ -160,7 +161,7 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  public openDialog(){
+  public openDialog() {
     let dialogRef = this.dialog.open(ProjectEditOrView, {
       width: '250px',
       data: { name: "testing name", animal: "testing animal" }
@@ -168,19 +169,19 @@ export class ProjectComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      console.log('the result',result);
+      console.log('the result', result);
     });
   }
 
-  public newProjectDialog(){
-    let dialogRef = this.dialog.open(NewProjectComponent,{
-      width:'80%',
-      data:{
-        toEdit:false
+  public newProjectDialog() {
+    let dialogRef = this.dialog.open(NewProjectComponent, {
+      width: '80%',
+      data: {
+        toEdit: false
       }
     });
 
-    dialogRef.afterClosed().subscribe(newProject =>{
+    dialogRef.afterClosed().subscribe(newProject => {
       // this.middleLayerService.getURLs().subscribe(
       //   URLs=>{
       //     this.projectService.post(URLs['editedOrNewProjectURL'],newProject).subscribe(
@@ -197,7 +198,7 @@ export class ProjectComponent implements OnInit {
 
 @Component({
   selector: 'project-overview',
-  template:`
+  template: `
     <h1 mat-dialog-title>Hi {{data.name}}</h1>
     <div mat-dialog-content>
       <p>What's your favorite animal?</p>

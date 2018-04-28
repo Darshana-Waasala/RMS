@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import {
   MatFormFieldModule,
   MatAutocompleteModule,
@@ -51,81 +53,6 @@ import { GeneralService } from './services/general.service';
 
 import { AppComponent, DialogOverviewExampleDialog } from './app.component';
 
-// @NgModule({
-//   imports: [
-//     MatFormFieldModule,
-//     CdkTableModule,
-//     MatAutocompleteModule,
-//     MatButtonModule,
-//     MatButtonToggleModule,
-//     MatCardModule,
-//     MatCheckboxModule,
-//     MatChipsModule,
-//     MatStepperModule,
-//     MatDatepickerModule,
-//     MatDialogModule,
-//     MatExpansionModule,
-//     MatGridListModule,
-//     MatIconModule,
-//     MatInputModule,
-//     MatListModule,
-//     MatMenuModule,
-//     MatNativeDateModule,
-//     MatPaginatorModule,
-//     MatProgressBarModule,
-//     MatProgressSpinnerModule,
-//     MatRadioModule,
-//     MatRippleModule,
-//     MatSelectModule,
-//     MatSidenavModule,
-//     MatSliderModule,
-//     MatSlideToggleModule,
-//     MatSnackBarModule,
-//     MatSortModule,
-//     MatTableModule,
-//     MatTabsModule,
-//     MatToolbarModule,
-//     MatTooltipModule
-//   ],
-//   exports: [
-//     MatFormFieldModule,
-//     CdkTableModule,
-//     MatAutocompleteModule,
-//     MatButtonModule,
-//     MatButtonToggleModule,
-//     MatCardModule,
-//     MatCheckboxModule,
-//     MatChipsModule,
-//     MatStepperModule,
-//     MatDatepickerModule,
-//     MatDialogModule,
-//     MatExpansionModule,
-//     MatGridListModule,
-//     MatIconModule,
-//     MatInputModule,
-//     MatListModule,
-//     MatMenuModule,
-//     MatNativeDateModule,
-//     MatPaginatorModule,
-//     MatProgressBarModule,
-//     MatProgressSpinnerModule,
-//     MatRadioModule,
-//     MatRippleModule,
-//     MatSelectModule,
-//     MatSidenavModule,
-//     MatSliderModule,
-//     MatSlideToggleModule,
-//     MatSnackBarModule,
-//     MatSortModule,
-//     MatTableModule,
-//     MatTabsModule,
-//     MatToolbarModule,
-//     MatTooltipModule
-//   ]
-// })
-
-// export class MatModule {}
-
 
 @NgModule({
 
@@ -139,6 +66,7 @@ import { AppComponent, DialogOverviewExampleDialog } from './app.component';
     MatModule, // for angular material
     RoutingModule,
     ViewsModule,
+    NgbModule.forRoot()
   ],
   declarations: [
     AppComponent,
