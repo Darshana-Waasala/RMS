@@ -1,13 +1,24 @@
 <mat-tab-group [dynamicHeight]='true'>
-  <mat-tab label="general project information" position=0>
-    general project information
+  <mat-tab label="general project information" position=0 *ngIf="currentProject">
+    <h3>project name : {{currentProject.projectName}}</h3>
+    <p>Project Manager : {{projectManager}}</p>
+    <p>Resource Manager : {{resourceManager}}</p>
+    <p>Budget : {{currentProject.budjet}}</p>
+    <label>Expences upto now</label>
+    <p><ngb-progressbar [showValue]="true" type="info" [value]="50"></ngb-progressbar></p>
   </mat-tab>
 
-  <mat-tab label="project event time line">
+  <mat-tab label="project event time line" *ngIf="currentProject">
 
     <div id="main-wrap">
       <div id="sidebar">
-        <h3>project name : {{}}</h3>
+        <h3>project name : {{currentProject.projectName}}</h3>
+        <p>Project Manager : {{projectManager}}</p>
+        <p>Resource Manager : {{resourceManager}}</p>
+        <p>Budget : {{currentProject.budjet}}</p>
+        <label>Expences upto now</label>
+        <mat-progress-bar mode="determinate" value="{{currentProject.totalExpencesUptoNow/currentProject.budjet}}"
+          [color]="warn"></mat-progress-bar>
       </div>
       <div id="content-wrap">
 

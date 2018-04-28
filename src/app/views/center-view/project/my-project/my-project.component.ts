@@ -21,6 +21,7 @@ export class MyProjectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCurrentProjectDetails();
   }
 
   getCurrentProjectDetails(){

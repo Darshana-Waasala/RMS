@@ -116,7 +116,8 @@ export class ProjectEvent{
         public projectEventType:number, // 1-CR, 2-BugFixing, 3-FunctionAddition, 4-ChangeOfPlan, 5-Meeting
         public eventTypeName:string,    // 1-CR, 2-BugFixing, 3-FunctionAddition, 4-ChangeOfPlan, 5-Meeting
         public eventTime:number,
-        public eventResponsiblity:number, // the employeeId made this
+        public eventResponsiblityId:number, // the employeeId made this
+        public eventResponsibilityName:string,
         public eventDuration:string,
         
         // if evetnt was a CR
