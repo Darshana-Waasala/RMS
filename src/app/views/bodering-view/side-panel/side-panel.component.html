@@ -91,22 +91,16 @@
         <mat-divider></mat-divider>
       </mat-nav-list>
 
-      <mat-nav-list (click)="sidenav.toggle()" role="navigation">
+      <!-- <mat-nav-list (click)="sidenav.toggle()" role="navigation">
         <mat-list-item *ngFor="let item of sidenavDetails" routerLink={{item.routerLink}} >
           <a mat-line> {{item.name}} </a>
           <mat-icon matListIcon>{{item.icon}}</mat-icon>
         </mat-list-item>
-      </mat-nav-list>
+      </mat-nav-list> -->
 
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <!-- <p>
-        <mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox>
-      </p>
-      <p>
-        <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
-      </p> -->
 
       <router-outlet></router-outlet>
 
