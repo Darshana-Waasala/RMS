@@ -1,3 +1,73 @@
-<p>
-  client-trainer works!
-</p>
+<mat-card>
+    <h3>Projects</h3>
+    <button class="right1" mat-raised-button color="warn" (click)="newProjectDialog()">New Project</button>
+    <button class="right1" mat-raised-button color="warn" (click)="getCurrentProjects()">Current projects</button>
+    <button class="right2" mat-raised-button color="warn" (click)="getPastProjects()">Past projects</button>
+    <button class="right3" mat-raised-button color="warn" (click)="getPendingProjects()">Pending projects</button>
+  
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+  
+    <div class="example-container mat-elevation-z8">
+  
+      <mat-table [dataSource]="dataSource" matSort>
+  
+        <!-- projectName Column -->
+        <ng-container matColumnDef="projectName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.projectName}} </mat-cell>
+        </ng-container>
+  
+        <!-- projectManager Column -->
+        <ng-container matColumnDef="projectManager">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Project Manager </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.projectManager}} </mat-cell>
+        </ng-container>
+  
+        <!-- totalExpences Column -->
+        <ng-container matColumnDef="totalExpences">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Total Expences </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.totalExpences}} </mat-cell>
+        </ng-container>
+  
+        <!-- deadLine Column -->
+        <ng-container matColumnDef="deadLine">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Dead Line </mat-header-cell>
+          <!-- <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.deadLine}} </mat-cell> -->
+          <mat-cell *matCellDef="let row"> {{row.deadLine}} </mat-cell>
+        </ng-container>
+  
+        <!-- customer Column -->
+        <ng-container matColumnDef="customer">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Customer </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.customer}} </mat-cell>
+        </ng-container>
+  
+        <!-- projectCatogary Column -->
+        <ng-container matColumnDef="projectCatogary">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Project Catogary </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.projectCatogary}} </mat-cell>
+        </ng-container>
+  
+        <!-- action Column -->
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
+          <mat-cell *matCellDef="let row"> 
+            <a mat-mini-fab (click)='editProj(row)'>Edit</a>
+            <a mat-mini-fab (click)='openDialog(row,1)'>Details</a>
+            <a mat-mini-fab (click)='openDialog(row,0)'>Delete</a> 
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  
+  </mat-card>

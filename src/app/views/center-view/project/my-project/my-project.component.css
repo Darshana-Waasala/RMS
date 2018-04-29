@@ -12,7 +12,9 @@
   .timeline {
     position: relative;
     max-width: 1200px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin: 0 ;
+    background-color: #474e5d;
   }
   
   /* The actual timeline (the vertical ruler) */
@@ -20,11 +22,11 @@
     content: '';
     position: absolute;
     width: 6px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     top: 0;
     bottom: 0;
     left: 50%;
-    margin-left: -3px;
+    /* margin-left: -3px; */
   }
   
   /* Container around content */
@@ -33,6 +35,8 @@
     position: relative;
     background-color: inherit;
     width: 50%;
+    margin-right: 0;
+    margin-left: 0;
   }
   
   /* The circles on the timeline */
@@ -89,7 +93,7 @@
   
   /* Fix the circle for containers on the right side */
   .right::after {
-    left: -16px;
+    left: -10px;
   }
   
   /* The actual content */
@@ -134,6 +138,9 @@
   }
 
   
+  /**
+  * for the page division. which is not used here
+  */
 #main-wrap {
     /* overflow to handle inner floating block */
     overflow: hidden;
@@ -141,10 +148,16 @@
 
 #sidebar {
     float: left;
-    width: 30%;
+    width: 20%;
 }
 
 #content-wrap {
     float: right;
-    width: 70%;
+    width: 80%;
 }  
+
+.example-button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

@@ -23,5 +23,6 @@
     "projectSituationsURL":"http://",
 
     "editedOrNewProjectURL":"http://",
-    "pendingResourceURL":"http://"
+    "pendingResourceURL":"http://",
+    "projectEventURL":"http://"
 }

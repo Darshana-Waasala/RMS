@@ -1,75 +1,49 @@
 <mat-tab-group [dynamicHeight]='true'>
-  <mat-tab label="general project information" position=0 *ngIf="currentProject">
+  <mat-tab label="general project information" position=0 *ngIf="currentProject && projectManager && resourceManager">
     <h3>project name : {{currentProject.projectName}}</h3>
-    <p>Project Manager : {{projectManager}}</p>
-    <p>Resource Manager : {{resourceManager}}</p>
+    <p>Project Manager : {{projectManager.lastName}}</p>
+    <p>Resource Manager : {{resourceManager.lastName}}</p>
     <p>Budget : {{currentProject.budjet}}</p>
     <label>Expences upto now</label>
-    <p><ngb-progressbar [showValue]="true" type="info" [value]="50"></ngb-progressbar></p>
+    <p>
+      <ngb-progressbar [showValue]="true" type="info" [value]="80"></ngb-progressbar>
+    </p>
+    <p>$ {{currentProject.totalExpencesUptoNow}}</p>
   </mat-tab>
 
   <mat-tab label="project event time line" *ngIf="currentProject">
 
-    <div id="main-wrap">
+    <!-- <div id="main-wrap">
       <div id="sidebar">
         <h3>project name : {{currentProject.projectName}}</h3>
         <p>Project Manager : {{projectManager}}</p>
         <p>Resource Manager : {{resourceManager}}</p>
         <p>Budget : {{currentProject.budjet}}</p>
         <label>Expences upto now</label>
-        <mat-progress-bar mode="determinate" value="{{currentProject.totalExpencesUptoNow/currentProject.budjet}}"
-          [color]="warn"></mat-progress-bar>
+        <mat-progress-bar mode="determinate" value="{{currentProject.totalExpencesUptoNow/currentProject.budjet}}" [color]="warn"></mat-progress-bar>
       </div>
-      <div id="content-wrap">
+      <div id="content-wrap"> -->
+
+          <div class="button-row">
+              <button mat-raised-button color="warn" (click)="newEventDialog()">create new project</button>
+            </div>
 
         <div class="timeline">
-          <div class="container left">
-            <div class="content">
+          <div *ngFor="let event of projectEvents; let i = index" [class]="(i%2 === 0) ? 'container left' : 'container right'">
+            <div class="content" (mouseover)="testing()">
               <h2>2017</h2>
-              <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent
-                detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              <button type="button" class="btn btn-outline-secondary" ngbPopover="You see, I show up on hover!" triggers="mouseenter:mouseleave" popoverTitle="Pop title">
+                  Hover over me!
+                </button>
+              <p>{{event}}</p>
             </div>
+
           </div>
-          <div class="container right">
-            <div class="content">
-              <h2>2016</h2>
-              <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent
-                detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-          <div class="container left">
-            <div class="content">
-              <h2>2015</h2>
-              <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent
-                detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-          <div class="container right">
-            <div class="content">
-              <h2>2012</h2>
-              <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent
-                detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-          <div class="container left">
-            <div class="content">
-              <h2>2011</h2>
-              <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent
-                detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-          <div class="container right">
-            <div class="content">
-              <h2>2007</h2>
-              <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent
-                detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-            </div>
-          </div>
-        </div>
+        </div> 
 
 
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
 
   </mat-tab>
 </mat-tab-group>

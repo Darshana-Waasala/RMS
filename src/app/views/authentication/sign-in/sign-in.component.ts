@@ -41,29 +41,36 @@ export class SignInComponent implements OnInit {
   }
   
   login(){
-    // var emp1:Employee;
-    // emp1.password = this.password;
-    // emp1.email = this.emailFormControl.value;
     var emp = new Employee(null,null,null,null,null,this.emailFormControl.value,null,
     this.password,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+
     this.mdLayerService.getURLs().subscribe(
       URLs=>{
-        this.genEmpService.postAnyReturn(URLs["loginURL"],emp).subscribe(
-          resultEmp =>{
-
-            if( resultEmp[0].hasOwnProperty("id")){
-              this.mdLayerService.setCurrentEmployee(resultEmp);
-              localStorage.setItem('isLoggedin','true');
-              this.router.navigate(['']);
-            }else if(resultEmp === 'incorrect password'){ // if password wrong
-              console.log("password wrong");
-            }else if(resultEmp === 'invalid login attempt'){
-              console.log("no user");
-            }
-            
-
+        this.genEmpService.getById(URLs["employeeURL"],0).subscribe(
+          emp =>{
+            this.mdLayerService.setCurrentEmployee(emp);
+            localStorage.setItem('isLoggedin','true');
+            this.router.navigate(['']);
           }
         );
+
+
+        // this.genEmpService.postAnyReturn(URLs["loginURL"],emp).subscribe(
+        //   resultEmp =>{
+
+        //     if( resultEmp[0].hasOwnProperty("id")){
+        //       this.mdLayerService.setCurrentEmployee(resultEmp);
+        //       localStorage.setItem('isLoggedin','true');
+        //       this.router.navigate(['']);
+        //     }else if(resultEmp === 'incorrect password'){ // if password wrong
+        //       console.log("password wrong");
+        //     }else if(resultEmp === 'invalid login attempt'){
+        //       console.log("no user");
+        //     }
+            
+
+        //   }
+        // );
       }
     );
   }

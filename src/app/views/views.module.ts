@@ -19,7 +19,7 @@ import { DepartmentComponent, EditDialog } from './center-view/department/depart
 import { DesignationComponent } from './center-view/designation/designation.component';
 import { ProjectUtilizationComponent } from './center-view/project-utilization/project-utilization.component';
 import { BaseComponent } from './base/base.component';
-import { MyProjectComponent } from './center-view/project/my-project/my-project.component';
+import { MyProjectComponent, NewEventDialog } from './center-view/project/my-project/my-project.component';
 import { ClientTrainerComponent } from './center-view/general_info/client-trainer/client-trainer.component';
 import { TrainingProgramsComponent } from './center-view/training_program/training-programs/training-programs.component';
 import { CommentsComponent } from './center-view/training_program/comments/comments.component';
@@ -72,7 +72,8 @@ import { PendingLeavesComponent } from './center-view/leave/pending-leaves/pendi
     NewProjectComponent,
     ProfileComponent,
     SettingsComponent,
-    MessagesComponent
+    MessagesComponent,
+    NewEventDialog
   ],
   exports: [
     BaseComponent,
@@ -91,14 +92,16 @@ import { PendingLeavesComponent } from './center-view/leave/pending-leaves/pendi
     ProjectComponent,
     ProjectUtilizationComponent,
     EmployeeComponent,AddEmployee,
-    ProjectEditOrView
+    ProjectEditOrView,
+    NewEventDialog
   ],
   entryComponents:[
     EditDialog,
     AddEmployee,
     ProjectEditOrView,
     NewProjectComponent,
-    LocationComponent
+    LocationComponent,
+    NewEventDialog
   ]
 })
 export class ViewsModule { }

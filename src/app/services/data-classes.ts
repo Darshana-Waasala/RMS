@@ -261,3 +261,11 @@ export class TermParams{
         public param:string
     ){}
 }
+
+export class ClientTrainer{
+    constructor(
+        public name:string,
+        public type:number, // 0 - client, 1 - trainer
+        public id?:number,
+    ){}
+}
