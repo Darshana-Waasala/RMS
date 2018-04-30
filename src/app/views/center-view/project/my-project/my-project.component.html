@@ -1,5 +1,10 @@
 <mat-tab-group [dynamicHeight]='true'>
   <mat-tab label="general project information" position=0 *ngIf="currentProject && projectManager && resourceManager">
+
+      <div class="button-row">
+          <button mat-raised-button color="warn" (click)="newEventDialog()">Resource Request</button>
+        </div>
+
     <h3>project name : {{currentProject.projectName}}</h3>
     <p>Project Manager : {{projectManager.lastName}}</p>
     <p>Resource Manager : {{resourceManager.lastName}}</p>
